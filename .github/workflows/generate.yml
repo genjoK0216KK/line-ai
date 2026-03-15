@@ -1,0 +1,58 @@
+name: Generate Homepage
+
+on:
+  workflow_dispatch:
+    inputs:
+      instruction:
+        description: 'LINEからの指示'
+        required: true
+        type: string
+      user_id:
+        description: 'LINE userId'
+        required: true
+        type: string
+      site_name:
+        description: 'サイト名'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Generate homepage
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          INSTRUCTION: ${{ inputs.instruction }}
+          SITE_NAME: ${{ inputs.site_name }}
+        run: node src/generate.js
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          destination_dir: ${{ inputs.site_name }}
+          keep_files: true
+
+      - name: Notify LINE
+        env:
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_USER_ID: ${{ inputs.user_id }}
+          SITE_NAME: ${{ inputs.site_name }}
+          GITHUB_PAGES_URL: https://genjok0216kk.github.io/line-ai/${{ inputs.site_name }}
+        run: node src/notify-line.js
