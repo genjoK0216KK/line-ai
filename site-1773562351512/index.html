@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bellezza Hair Salon - あなただけの美しさ、髪から引き出すお手伝いを。</title>
+    <!-- Google Fonts: Noto Sans JP (本文用) & Cormorant Garamond (見出し用) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome (アイコン用) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS Reset & Base Styles */
+        :root {
+            --primary-color: #7a5e5e; /* メインカラー: 落ち着いたブラウン系 */
+            --secondary-color: #f7f2ef; /* サブカラー: オフホワイト、クリーム系 */
+            --accent-color: #b89c72; /* アクセントカラー: ゴールド系 */
+            --text-color: #333333; /* 主要テキストカラー */
+            --light-text-color: #666666; /* 明るいテキストカラー */
+            --white: #ffffff;
+            --spacing-lg: 80px;
+            --spacing-md: 40px;
+            --spacing-sm: 20px;
+            --max-width: 1200px;
+        }
+
+        /* 全要素のマージン・パディングをリセットし、box-sizingをborder-boxに設定 */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* スムーススクロールを有効にする */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 基本のボディスタイル */
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased; /* フォントのアンチエイリアス */
+            -moz-osx-font-smoothing: grayscale; /* フォントのアンチエイリアス */
+        }
+
+        /* リンクのスタイル */
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        /* 画像のスタイル */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 見出しのスタイル */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--primary-color);
+        }
+
+        h1 { font-size: 3em; }
+        h2 { font-size: 2.5em; }
+        h3 { font-size: 1.8em; }
+
+        /* コンテンツ幅の制限と中央寄せ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-sm);
+        }
+
+        /* セクション共通の上下パディング */
+        .section-padding {
+            padding: var(--spacing-lg) 0;
+        }
+
+        /* テキスト中央寄せ */
+        .text-center {
+            text-align: center;
+        }
+
+        /* ヘッダー */
+        .header {
+            background-color: var(--white);
+            padding: var(--spacing-sm) 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-size: 1.8em;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-list li {
+            margin-left: var(--spacing-md);
+        }
+
+        .nav-list a {
+            color: var(--primary-color);
+            font-weight: 400;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-list a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-list a:hover::after {
+            width: 100%;
+        }
+        .nav-list a:hover {
+            color: var(--accent-color);
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            /* ダミー画像。実際は高解像度のサロン内観や美しいヘアスタイルの画像を使用してください */
+            background-image: url('https://source.unsplash.com/random/1920x1080/?hair-salon-interior,beautiful-hair'); 
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            text-align: center;
+            padding: calc(var(--spacing-lg) * 2) var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh; /* 画面の80%の高さを確保 */
+            position: relative;
+            margin-top: 70px; /* 固定ヘッダーの高さ分 */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* 背景画像のオーバーレイ */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 4.5em;
+            margin-bottom: var(--spacing-sm);
+            color: var(--white);
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* テキストの影 */
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin-bottom: var(--spacing-md);
+            color: var(--white);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+        }
+
+        /* ボタンの共通スタイル */
+        .button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .button:hover {
+            background-color: #a38b62; /* 少し暗いゴールド */
+            transform: translateY(-2px); /* ホバーで少し上に移動 */
+            color: var(--white); /* ホバーしてもテキスト色は白のまま */
+        }
+
+        /* セクションタイトルのスタイル */
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+            position: relative;
+            padding-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        /* サービスセクション */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* レスポンシブなグリッド */
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+
+        .service-item {
+            background-color: var(--secondary-color);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-bottom: 4px solid var(--accent-color); /* 下部にアクセントライン */
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.12);
+        }
+
+        .service-item i {
+            font-size: 3em;
+            color: var(--accent-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .service-item h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .service-item p {
+            font-size: 0.95em;
+            color: var(--light-text-color);
+        }
+
+        /* 私たちのこだわりセクション */
+        .about {
+            background-color: var(--secondary-color);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px; 
+        }
+
+        .about-image img {
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            object-fit: cover; /* 画像をボックスに合わせてトリミング */
+            width: 100%;
+            height: 400px; /* 固定の高さ */
+        }
+
+        .about-text {
+            flex: 2;
+        }
+
+        .about-text h2 {
+            text-align: left;
+        }
+
+        .about-text ul {
+            list-style: none;
+            margin-top: var(--spacing-sm);
+        }
+
+        .about-text li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: var(--light-text-color);
+        }
+
+        .about-text li::before {
+            content: "\f00c"; /* Font Awesomeのチェックアイコン */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 1.2em;
+        }
+
+        /* CTAセクション */
+        .cta {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: var(--spacing-lg) var(--spacing-sm);
+        }
+
+        .cta h2 {
+            color: var(--white);
+            font-size: 2.5em;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .cta p {
+            font-size: 1.2em;
+            margin-bottom: var(--spacing-md);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta .button {
+            background-color: var(--accent-color);
+            color: var(--white);
+        }
+
+        .cta .button:hover {
+            background-color: #a38b62;
+        }
+
+        /* フッター */
+        .footer {
+            background-color: var(--text-color); /* 暗めの背景色 */
+            color: var(--secondary-color); /* 明るいテキスト色 */
+            padding: var(--spacing-md) 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .footer .container {
+            display: flex;
+            flex-wrap: wrap; /* 小さい画面で折り返す */
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: var(--spacing-md);
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 250px; /* 各カラムの最小幅 */
+            margin-bottom: var(--spacing-sm);
+            text-align: left;
+        }
+        
+        .footer-col.center {
+            text-align: center;
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a {
+            color: var(--secondary-color);
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-icons a {
+            font-size: 1.5em;
+            margin: 0 10px;
+            color: var(--secondary-color);
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            width: 100%;
+            text-align: center;
+            margin-top: var(--spacing-md);
+            padding-top: var(--spacing-sm);
+            border-top: 1px solid rgba(255, 255, 255, 0.1); /* 上部に細い線 */
+            color: var(--light-text-color);
+        }
+
+        /* モバイルメニュー用のハンバーガーアイコン */
+        .menu-toggle {
+            display: none; /* デスクトップでは非表示 */
+            font-size: 1.8em;
+            color: var(--primary-color);
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.5em;
+            }
+            .hero p {
+                font-size: 1.3em;
+            }
+            .about-content {
+                flex-direction: column; /* 縦積み */
+            }
+            .about-image {
+                width: 100%;
+            }
+            .about-image img {
+                height: 300px; /* モバイルでは高さを調整 */
+            }
+            .about-text {
+                text-align: center;
+            }
+            .about-text h2 {
+                text-align: center;
+            }
+            .about-text ul {
+                padding-left: 0;
+            }
+            .about-text li {
+                text-align: left; /* リスト項目は左寄せ */
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .footer .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .footer-col {
+                text-align: center;
+                min-width: unset;
+                width: 100%;
+            }
+            .footer-col h3 {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: var(--spacing-sm) var(--spacing-sm);
+            }
+            .nav-list {
+                display: none; /* デフォルトで非表示 */
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* ヘッダーの高さ */
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: var(--spacing-sm) 0;
+                border-top: 1px solid var(--secondary-color);
+            }
+            .nav-list.active {
+                display: flex; /* アクティブ時に表示 */
+            }
+            .nav-list li {
+                margin: 0;
+                border-bottom: 1px solid var(--secondary-color);
+            }
+            .nav-list li:last-child {
+                border-bottom: none;
+            }
+            .nav-list a {
+                display: block;
+                padding: 15px var(--spacing-md);
+                text-align: center;
+                color: var(--primary-color);
+            }
+            .nav-list a::after {
+                display: none; /* モバイルメニューでは下線非表示 */
+            }
+            .menu-toggle {
+                display: block; /* モバイルで表示 */
+            }
+
+            .hero {
+                min-height: 60vh;
+                padding: calc(var(--spacing-md) * 2) var(--spacing-sm);
+            }
+            .hero h1 {
+                font-size: 2.8em;
+            }
+            .hero p {
+                font-size: 1.1em;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            h3 {
+                font-size: 1.5em;
+            }
+            .section-padding {
+                padding: var(--spacing-md) 0;
+            }
+            .about-content {
+                gap: var(--spacing-md);
+            }
+            .cta h2 {
+                font-size: 2em;
+            }
+            .cta p {
+                font-size: 1em;
+            }
+            .cta .button {
+                margin-left: 0 !important; /* ボタンのマージンをリセット */
+                margin-top: var(--spacing-sm);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .button {
+                padding: 12px 25px;
+                font-size: 0.9em;
+            }
+            .footer-col {
+                padding-left: var(--spacing-sm);
+                padding-right: var(--spacing-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="#hero" class="logo">Bellezza Hair Salon</a>
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-menu">
+                <ul class="nav-list">
+                    <li><a href="#hero">ホーム</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#about">こだわり</a></li>
+                    <li><a href="#contact">ご予約</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ヒーローセクション -->
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Bellezza Hair Salon</h1>
+                <p>あなただけの美しさ、髪から引き出すお手伝いを。</p>
+                <a href="#contact" class="button">今すぐ予約する</a>
+            </div>
+        </section>
+
+        <!-- サービス紹介セクション -->
+        <section id="services" class="services section-padding">
+            <div class="container">
+                <h2 class="section-title">私たちのサービス</h2>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <i class="fas fa-cut"></i>
+                        <h3>カット</h3>
+                        <p>一人ひとりの骨格・髪質を見極め、理想のスタイルをご提案。トレンドを取り入れた似合わせカットで、新しい自分を発見してください。</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-palette"></i>
+                        <h3>カラー</h3>
+                        <p>髪のダメージを最小限に抑えながら、肌色に合わせたパーソナルカラーを提案。透明感のある外国人風カラーから白髪染めまで幅広く対応。</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-wind"></i>
+                        <h3>パーマ</h3>
+                        <p>柔らかで自然なウェーブから、しっかりとリッジの効いたカールまで。髪質やイメージに合わせて、最適なパーマスタイルをデザインします。</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-spa"></i>
+                        <h3>トリートメント</h3>
+                        <p>髪の深部からケアし、本来の輝きを取り戻します。乾燥やダメージ、うねりなど、お客様の髪のお悩みに合わせた最適なケアをご提供。</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-head-side-mask"></i>
+                        <h3>ヘッドスパ</h3>
+                        <p>日頃の疲れを癒し、頭皮から健康な髪へと導きます。血行促進効果でリフレッシュし、健やかな髪の成長をサポートします。</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-brush"></i>
+                        <h3>ヘアセット</h3>
+                        <p>結婚式やパーティー、特別な日のためのヘアセット。プロの技術で、華やかで美しいスタイルを演出し、あなたの魅力を最大限に引き出します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 私たちのこだわりセクション (会社概要・特徴) -->
+        <section id="about" class="about section-padding">
+            <div class="container">
+                <h2 class="section-title">Bellezza Hair Salonのこだわり</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <!-- ダミー画像。実際はスタイリストとお客様のイメージやサロン内部の画像を設置してください -->
+                        <img src="https://source.unsplash.com/random/800x600/?hair-stylist,salon-staff" alt="スタイリストとお客様のイメージ">
+                    </div>
+                    <div class="about-text">
+                        <h3>お客様一人ひとりに寄り添う、上質な時間と技術を。</h3>
+                        <p>Bellezza Hair Salonでは、お客様の「なりたい」を叶えるために、以下の3つのこだわりを大切にしています。</p>
+                        <ul>
+                            <li>厳選された高品質な薬剤を使用し、髪と頭皮への優しさを追求します。</li>
+                            <li>経験豊富なスタイリストが、最新のトレンドと確かな技術で最適なスタイルをご提案します。</li>
+                            <li>日常を忘れさせる、落ち着いた上質なプライベート空間で心ゆくまでリラックスいただけます。</li>
+                        </ul>
+                        <p>髪の悩みや理想のスタイルなど、どんなことでもお気軽にご相談ください。私たちは、お客様がより輝くお手伝いをさせていただきます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- お問い合わせCTAセクション -->
+        <section id="contact" class="cta">
+            <div class="container">
+                <h2>美しい髪への第一歩を、今。</h2>
+                <p>ご予約やお問い合わせは、お電話またはオンライン予約システムをご利用ください。</p>
+                <a href="tel:0312345678" class="button"><i class="fas fa-phone-alt"></i> 03-1234-5678</a>
+                <a href="#" class="button" style="margin-left: 15px;"><i class="fas fa-calendar-alt"></i> オンライン予約</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-col">
+                <h3>Bellezza Hair Salon</h3>
+                <p>〒150-0043 東京都渋谷区道玄坂1-2-3 Bellezzaビル1F</p>
+                <p>電話: <a href="tel:0312345678">03-1234-5678</a></p>
+                <p>E-mail: <a href="mailto:info@bellezza-hairsalon.jp">info@bellezza-hairsalon.jp</a></p>
+            </div>
+            <div class="footer-col">
+                <h3>営業時間</h3>
+                <ul>
+                    <li>火〜金: 10:00 - 20:00</li>
+                    <li>土日祝: 09:00 - 19:00</li>
+                    <li>定休日: 月曜日</li>
+                </ul>
+            </div>
+            <div class="footer-col center">
+                <h3>SNSで繋がる</h3>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Bellezza Hair Salon. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // スムーススクロールの処理
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault(); // デフォルトのアンカーリンク動作を無効化
+
+                const targetId = this.getAttribute('href'); // リンク先のIDを取得
+                const targetElement = document.querySelector(targetId); // ターゲット要素を取得
+
+                if (targetElement) {
+                    const headerOffset = document.querySelector('.header').offsetHeight; // ヘッダーの高さを取得
+                    // ターゲット要素の上部位置からヘッダーの高さ分をオフセット
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - headerOffset - 20; // さらに20pxのパディングを追加
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth" // スムーズスクロール
+                    });
+                }
+            });
+        });
+
+        // モバイルメニューのトグル処理
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navList = document.querySelector('.nav-list');
+        const navLinks = document.querySelectorAll('.nav-list a');
+
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active'); // nav-listにactiveクラスをトグル
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars'); // ハンバーガーアイコンを
+            icon.classList.toggle('fa-times'); // バツ印に切り替える
+        });
+
+        // ナビゲーションリンクがクリックされたらメニューを閉じる
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+    </script>
+</body>
+</html>
