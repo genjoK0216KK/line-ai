@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hair Salon éclat - あなたらしい美しさを引き出す、上質なヘアスタイルを。</title>
+    <meta name="description" content="Hair Salon éclatは、丁寧なカウンセリングと厳選された薬剤で、お客様一人ひとりの魅力を最大限に引き出す上質なヘアスタイルをご提案します。">
+
+    <!-- Google Fonts (CDN) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome (アイコン用 CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #A0522D; /* シエンナ（落ち着いた茶色） */
+            --secondary-color: #F8F4F0; /* オフホワイト */
+            --accent-color: #D4AF37; /* ゴールド */
+            --text-color: #333;
+            --light-text-color: #666;
+            --white-color: #fff;
+            --header-height: 80px;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--secondary-color);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            vertical-align: middle;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 0.8em;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 2.8em;
+            text-align: center;
+            margin-top: 1.5em;
+            margin-bottom: 1em;
+            position: relative;
+            letter-spacing: 0.05em;
+        }
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background-color: var(--accent-color);
+            margin: 0.5em auto 0;
+        }
+
+        h3 {
+            font-size: 1.8em;
+            margin-bottom: 0.6em;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white-color);
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn:hover {
+            background-color: #C29F2F; /* 少し暗めのゴールド */
+        }
+
+        /* Header */
+        .header {
+            background-color: var(--white-color);
+            color: var(--text-color);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+        }
+        .logo a {
+            color: var(--primary-color);
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-menu ul li {
+            margin-left: 30px;
+        }
+
+        .nav-menu ul li a {
+            color: var(--light-text-color);
+            font-weight: 400;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .nav-menu ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        .nav-menu ul li a:hover {
+            color: var(--primary-color);
+        }
+        .nav-menu ul li a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.8em;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://source.unsplash.com/random/1600x900/?hair-salon-interior,beauty') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white-color);
+            padding-top: var(--header-height); /* Headerの高さ分調整 */
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 4.5em;
+            margin-bottom: 0.2em;
+            color: var(--white-color);
+            letter-spacing: 2px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.8em;
+            margin-bottom: 2em;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 300;
+        }
+
+        .hero .btn {
+            font-size: 1.2em;
+            padding: 18px 40px;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-background {
+            background-color: var(--white-color);
+        }
+        
+        .section-background-alt {
+            background-color: var(--secondary-color);
+        }
+
+        /* Service Section */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 3em;
+        }
+
+        .service-item {
+            background-color: var(--white-color);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .service-item .icon {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .service-item h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .service-item p {
+            font-size: 0.95em;
+            color: var(--light-text-color);
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 3em;
+            justify-content: center;
+            align-items: stretch;
+        }
+
+        .feature-item {
+            flex: 1 1 45%; /* 2 items per row on larger screens */
+            background-color: var(--white-color);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: flex-start;
+            min-width: 300px; /* minimum width for flex item */
+        }
+        
+        .feature-item:nth-child(odd) {
+            margin-right: auto; /* Push odd items to the left, even to the right */
+        }
+        .feature-item:nth-child(even) {
+             margin-left: auto;
+        }
+
+
+        .feature-item .icon {
+            font-size: 2.5em;
+            color: var(--accent-color);
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .feature-item p {
+            font-size: 1em;
+            color: var(--light-text-color);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://source.unsplash.com/random/1600x600/?haircut,woman,man') no-repeat center center/cover;
+            color: var(--white-color);
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 3.5em;
+            color: var(--white-color);
+            margin-bottom: 0.5em;
+        }
+        .cta-section h2::after {
+            background-color: var(--accent-color);
+        }
+
+        .cta-section p {
+            font-size: 1.5em;
+            margin-bottom: 2.5em;
+            font-weight: 300;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 60px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .footer .logo {
+            font-size: 2.5em;
+            color: var(--white-color);
+            margin-bottom: 20px;
+        }
+        .footer .logo a {
+            color: var(--white-color);
+        }
+
+        .footer-info {
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px 40px;
+        }
+
+        .footer-info p {
+            margin: 0;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+        }
+        .footer-info p i {
+            margin-right: 8px;
+            color: var(--accent-color);
+        }
+
+        .social-icons {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .social-icons a {
+            color: var(--white-color);
+            font-size: 1.5em;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+            margin-bottom: 20px;
+        }
+        .footer-nav ul li a {
+            color: var(--white-color);
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+        .footer-nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 20px;
+            font-size: 0.85em;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Mobile specific styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.5em;
+            }
+            .hero p {
+                font-size: 1.4em;
+            }
+            h2 {
+                font-size: 2.2em;
+            }
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                background-color: var(--white-color);
+                box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+                padding-bottom: 20px;
+                animation: slideDown 0.3s ease-out forwards;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .nav-menu ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            .nav-menu ul li {
+                margin: 15px 0;
+            }
+            .hamburger {
+                display: block;
+            }
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+            .features-grid {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .feature-item {
+                flex: 1 1 100%;
+            }
+            .cta-section h2 {
+                font-size: 2.5em;
+            }
+            .cta-section p {
+                font-size: 1.2em;
+            }
+            .footer-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero p {
+                font-size: 1.1em;
+            }
+            .hero .btn {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            .feature-item {
+                padding: 30px;
+            }
+            .feature-item .icon {
+                font-size: 2em;
+            }
+            .cta-section .btn {
+                margin: 10px 0 !important; /* ボタンが縦に並ぶように */
+                display: block;
+            }
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo"><a href="#">éclat</a></div>
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#hero">ホーム</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#features">こだわり</a></li>
+                    <li><a href="#contact">ご予約</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ヒーローセクション -->
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1 class="fade-in">Hair Salon éclat</h1>
+                <p class="fade-in delay-1">あなたらしい美しさを引き出す、上質なヘアスタイルを。</p>
+                <a href="#contact" class="btn fade-in delay-2">今すぐ予約する</a>
+            </div>
+        </section>
+
+        <!-- サービス/商品紹介 -->
+        <section id="services" class="section-background">
+            <div class="container">
+                <h2>SERVICES</h2>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <div class="icon"><i class="fas fa-cut"></i></div>
+                        <h3>カット</h3>
+                        <p>お客様一人ひとりの骨格や髪質、ライフスタイルに合わせた「似合わせカット」で、再現性の高いスタイルをご提案します。</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="icon"><i class="fas fa-palette"></i></div>
+                        <h3>カラー</h3>
+                        <p>オーガニックカラーからトレンドカラーまで、髪へのダメージを最小限に抑えながら、理想の色味を実現します。</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="icon"><i class="fas fa-magic"></i></div>
+                        <h3>パーマ</h3>
+                        <p>デジタルパーマ、ポイントパーマなど、柔らかく自然なカールで毎日のスタイリングを楽しく、美しく。</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="icon"><i class="fas fa-spa"></i></div>
+                        <h3>トリートメント・ヘッドスパ</h3>
+                        <p>髪の内部からケアするトリートメントと、頭皮を癒やすアロマヘッドスパで、髪も心もリフレッシュ。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 会社概要 or 特徴 -->
+        <section id="features" class="section-background-alt">
+            <div class="container">
+                <h2>OUR COMMITMENT</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="icon"><i class="fas fa-comments"></i></div>
+                        <div>
+                            <h3>丁寧なカウンセリング</h3>
+                            <p>お客様の「なりたい」を深く理解するため、時間をかけた丁寧なカウンセリングを大切にしています。髪のお悩みもお気軽にご相談ください。</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon"><i class="fas fa-leaf"></i></div>
+                        <div>
+                            <h3>厳選された薬剤</h3>
+                            <p>髪と頭皮への優しさを最優先に考え、オーガニック製品や最新のダメージケア薬剤など、厳選された高品質なものだけを使用しています。</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon"><i class="fas fa-chair"></i></div>
+                        <div>
+                            <h3>リラックスできる空間</h3>
+                            <p>日常の喧騒を忘れ、ゆったりと過ごせる落ち着いた店内。最高のリラックスと癒やしを提供できるよう、空間づくりにもこだわっています。</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon"><i class="fas fa-star-half-alt"></i></div>
+                        <div>
+                            <h3>高い技術と経験</h3>
+                            <p>経験豊富なスタイリストが、お客様一人ひとりの個性と魅力を最大限に引き出す、プロフェッショナルな技術を提供します。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- お問い合わせCTA -->
+        <section id="contact" class="cta-section">
+            <div class="container">
+                <h2>ご予約・お問い合わせ</h2>
+                <p>上質な美しさと癒やしを体験しませんか？<br>ご来店を心よりお待ちしております。</p>
+                <a href="tel:0312345678" class="btn"><i class="fas fa-phone"></i> 電話で予約する</a>
+                <a href="#" class="btn" style="margin-left: 20px;"><i class="fas fa-calendar-alt"></i> オンライン予約</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="container">
+            <div class="logo"><a href="#">éclat</a></div>
+            <div class="footer-info">
+                <p><i class="fas fa-map-marker-alt"></i> 〒123-4567 東京都渋谷区〇〇1-2-3 エクラビル1F</p>
+                <p><i class="fas fa-phone"></i> <a href="tel:0312345678">03-1234-5678</a></p>
+                <p><i class="fas fa-clock"></i> 営業時間: 10:00 - 20:00 (最終受付19:00)</p>
+                <p><i class="fas fa-calendar-alt"></i> 定休日: 毎週火曜日、第3水曜日</p>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="#hero">ホーム</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#features">こだわり</a></li>
+                    <li><a href="#">プライバシーポリシー</a></li>
+                </ul>
+            </nav>
+            <p class="copyright">&copy; 2023 Hair Salon éclat. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = navMenu.querySelectorAll('a');
+
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                const icon = hamburger.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            // ナビゲーションリンクがクリックされたらメニューを閉じる
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        const icon = hamburger.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
