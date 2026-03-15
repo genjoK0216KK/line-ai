@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-preview-04-17' });
 
 const instruction = process.env.INSTRUCTION;
 const siteName = process.env.SITE_NAME;
