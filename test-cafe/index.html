@@ -1,0 +1,262 @@
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カフェ ドリームビーンズ - 心安らぐ一杯を、あなたに。</title>
+    <!-- Google Fonts - 読みやすい日本語フォントと、カフェの雰囲気に合うセリフ体を選択 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Font Awesome (CDN) - アイコン表示用 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3wzHqCqTfVwK0/4xI7g4KjN8k5t3+K6L8/6bW5F9g9g9g9g9g9g9g9g9g9g9g9g9g9g9g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Base Styles & Reset */
+        :root {
+            --primary-bg: #F8F4E3; /* Light cream - 主にセクションの背景 */
+            --secondary-bg: #E7DBD0; /* Slightly darker cream/beige - 交互セクションの背景 */
+            --accent-brown: #A0522D; /* Coffee brown - 強調色、ボタン、見出しの一部 */
+            --dark-brown: #6A3A2C; /* Darker wood brown - メインの見出し、フッター、お問い合わせ背景 */
+            --text-dark: #333333; /* 濃いテキスト色 */
+            --text-light: #F8F4E3; /* 明るいテキスト色（濃い背景用） */
+            --button-hover: #C57E4F; /* ボタンのホバー色 */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth; /* スムーズスクロール */
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif; /* 日本語テキストのデフォルトフォント */
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--primary-bg);
+            -webkit-font-smoothing: antialiased; /* フォントを滑らかに */
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 見出しのスタイル */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Lora', serif; /* タイトル、見出しのフォント */
+            color: var(--dark-brown);
+            margin-bottom: 0.8em;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 2.8em; }
+        h2 { font-size: 2.2em; }
+        h3 { font-size: 1.8em; }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        a {
+            color: var(--accent-brown);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--button-hover);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* コンテンツ幅の制限と中央寄せ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ボタンの汎用スタイル */
+        .button {
+            display: inline-block;
+            background-color: var(--accent-brown);
+            color: var(--text-light);
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .button:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-2px); /* ホバーで少し浮き上がる */
+        }
+
+        /* Header / Navigation */
+        .header {
+            background-color: rgba(255, 255, 255, 0.95); /* 半透明の白 */
+            padding: 15px 0;
+            position: fixed; /* 固定ヘッダー */
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* 軽い影 */
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Lora', serif;
+            font-size: 1.8em;
+            color: var(--dark-brown);
+            font-weight: bold;
+        }
+
+        .logo a {
+            color: var(--dark-brown);
+        }
+
+        .nav-menu ul {
+            display: flex;
+        }
+
+        .nav-menu ul li {
+            margin-left: 30px;
+        }
+
+        .nav-menu ul li a {
+            color: var(--dark-brown);
+            font-weight: 500;
+            font-size: 1.1em;
+            position: relative;
+        }
+
+        .nav-menu ul li a::after { /* ホバーアニメーション */
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-brown);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle (ハンバーガーアイコン) */
+        .menu-toggle {
+            display: none; /* デフォルトは非表示 */
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1001; /* ヘッダーより上に */
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--dark-brown);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* ハンバーガーアイコンのアニメーション */
+        .menu-toggle.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh; /* 全画面表示 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--text-light);
+            background: url('https://images.unsplash.com/photo-1517224426543-057bf24a3501?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMTc5MzV8MHwxfHNlYXJjaHwyMHx8Y2FmZXxlbnwwfHx8fDE2OTU3MzMyNzU&ixlib=rb-4.0.3&q=80&w=1920') no-repeat center center/cover;
+            /* Placeholder image. In a real project, host your own optimized images. */
+            padding-top: 80px; /* 固定ヘッダーの高さ分調整 */
+        }
+
+        .hero::before { /* オーバーレイ */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* 暗いオーバーレイ */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1; /* オーバーレイより前面に */
+            max-width: 800px;
+            padding: 20px;
+            animation: fadeInScale 1s ease-out forwards; /* フェードインと拡大アニメーション */
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        @keyframes fadeInScale {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.6); /* 強い影 */
+            letter-spacing: 0.08em;
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+            color: var(--text-light);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden; /* 子要素のはみ出しを隠す */
+        }
+
+        section:nth-of-type(even) { /* 交互に背景色を変える */
+            background-color: var(--secondary-bg
