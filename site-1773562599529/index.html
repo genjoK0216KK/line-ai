@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salon de Beaute éclat - あなたの日常に、輝きと彩りを。</title>
+    <meta name="description" content="心と髪が潤う、特別な美容院。経験豊富なスタイリストが、あなたの「なりたい」を叶えます。">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #d4b8a2; /* くすんだベージュピンク */
+            --secondary-color: #a2d4c0; /* くすんだミントグリーン */
+            --text-color: #333333;
+            --light-text-color: #f8f8f8;
+            --background-color: #fdfaf8; /* わずかに暖色系のオフホワイト */
+            --card-background: #ffffff;
+            --border-color: #e0e0e0;
+            --font-family-base: 'Noto Sans JP', sans-serif;
+            --font-size-base: 16px;
+        }
+
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            font-size: var(--font-size-base);
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden; /* 横スクロールを防止 */
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            vertical-align: middle;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.8em;
+        }
+
+        h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); }
+        h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+        h3 { font-size: clamp(1.4rem, 3vw, 2.2rem); }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: #c0a892; /* primary-colorより少し濃い色 */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--card-background);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* モバイル対応 */
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-list li {
+            margin-left: 30px;
+        }
+
+        .nav-list a {
+            color: var(--text-color);
+            font-weight: 400;
+            font-size: 1.05rem;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-list a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-list a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        #hero {
+            background: url('https://via.placeholder.com/1920x800/d4b8a2/f8f8f8?text=Beautiful+Hair+Salon') no-repeat center center/cover;
+            color: var(--light-text-color);
+            padding: 150px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* オーバーレイ */
+            z-index: 1;
+        }
+
+        #hero .container {
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        #hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        #hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* Section Heading */
+        .section-heading {
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--text-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-heading h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        .section-heading p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 15px;
+        }
+
+        /* Services Section */
+        #services {
+            background-color: var(--background-color);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            text-align: left;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        
+        .service-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: left;
+        }
+
+        .service-card ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .service-card ul li::before {
+            content: '✓'; /* アイコンの代わりにチェックマーク */
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: 700;
+        }
+
+        /* Features Section */
+        #features {
+            background-color: #fdf6f3; /* ヒーローのベージュ系に合わせた背景 */
+            padding-bottom: 0; /* 下のCTAと繋がるように */
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background-color: var(--card-background);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-item p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* Call To Action Section */
+        #cta {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 80px 0;
+        }
+
+        #cta .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #cta h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        #cta p {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            margin-bottom: 40px;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
+        #cta .btn {
+            background-color: var(--secondary-color);
+            color: var(--light-text-color);
+            font-size: 1.1rem;
+            padding: 18px 40px;
+            border: 2px solid var(--light-text-color);
+        }
+
+        #cta .btn:hover {
+            background-color: #92c4b0; /* secondary-colorより少し濃い色 */
+            border-color: var(--background-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: var(--light-text-color);
+            padding: 60px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .footer-info p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .footer-info a {
+            color: var(--light-text-color);
+            text-decoration: underline;
+        }
+
+        .footer-info a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            color: var(--light-text-color);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            color: var(--primary-color);
+        }
+
+        /* Simple placeholder for social icons */
+        .social-links a::before {
+            content: '〇'; /* 丸でSNSアイコンを表現 */
+            font-size: 1.2em;
+            display: inline-block;
+            width: 1.2em;
+            height: 1.2em;
+            line-height: 1.2em;
+            border-radius: 50%;
+            border: 1px solid var(--light-text-color);
+            text-align: center;
+        }
+        .social-links a:nth-child(1)::before { content: 'F'; } /* Facebook */
+        .social-links a:nth-child(2)::before { content: 'I'; } /* Instagram */
+        .social-links a:nth-child(3)::before { content: 'X'; } /* X (Twitter) */
+
+
+        .copyright {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: #bbb;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-list {
+                flex-direction: column;
+                width: 100%;
+                margin-top: 20px;
+                display: none; /* 初期状態では非表示 */
+                background-color: var(--card-background);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                padding-bottom: 10px;
+            }
+
+            .nav-list.active {
+                display: flex; /* アクティブ時に表示 */
+            }
+
+            .nav-list li {
+                margin: 10px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-list a {
+                display: block;
+                padding: 10px 0;
+            }
+            
+            .nav-list a::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .menu-toggle {
+                display: block; /* ハンバーガーアイコン表示 */
+                background: none;
+                border: none;
+                color: var(--text-color);
+                font-size: 2rem;
+                cursor: pointer;
+                padding: 5px;
+            }
+
+            header .container {
+                flex-wrap: nowrap;
+            }
+
+            #hero {
+                padding: 100px 0;
+            }
+
+            #hero h1 {
+                font-size: clamp(2rem, 8vw, 3.5rem);
+            }
+
+            #hero p {
+                font-size: clamp(1rem, 3vw, 1.3rem);
+            }
+
+            .service-grid, .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card, .feature-item {
+                margin-bottom: 20px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            #hero {
+                padding: 80px 0;
+            }
+
+            #hero h1 {
+                font-size: clamp(1.8rem, 10vw, 3rem);
+            }
+
+            #hero p {
+                font-size: clamp(0.9rem, 3.5vw, 1.2rem);
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.95rem;
+            }
+
+            .section-heading h2 {
+                font-size: clamp(1.8rem, 8vw, 2.5rem);
+            }
+
+            .footer-info p {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none; /* デスクトップでは非表示 */
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+            z-index: 1001; /* ハンバーガーメニューを最前面に */
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--text-color);
+            border-radius: 2px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* ハンバーガーメニューがアクティブになった時のスタイル */
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Salon de Beaute éclat</div>
+            <button class="menu-toggle" aria-label="メニューを開閉">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="#hero">ホーム</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#features">サロンについて</a></li>
+                    <li><a href="#cta">ご予約</a></li>
+                    <li><a href="#footer">アクセス</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h1>あなたの日常に、輝きと彩りを。</h1>
+                <p>心と髪が潤う、特別な場所。<br>経験豊富なスタイリストが、あなたの「なりたい」を叶えます。</p>
+                <a href="#cta" class="btn">今すぐオンライン予約</a>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>私たちのサービス</h2>
+                    <p>お客様一人ひとりの魅力を最大限に引き出す、多様なメニューをご用意しております。</p>
+                </div>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <h3>カット</h3>
+                        <p>お客様の骨格や髪質に合わせたオーダーメイドのカットで、理想のスタイルを実現します。</p>
+                        <ul>
+                            <li>一般カット: ¥5,500〜</li>
+                            <li>メンズカット: ¥5,000〜</li>
+                            <li>学生・キッズカット: ¥3,500〜</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>カラー</h3>
+                        <p>髪と頭皮に優しいオーガニックカラーから、トレンドのイルミナカラーまで。</p>
+                        <ul>
+                            <li>オーガニックカラー: ¥7,000〜</li>
+                            <li>ハイライト・バレイヤージュ: ¥9,000〜</li>
+                            <li>リタッチカラー: ¥6,000〜</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>パーマ・縮毛矯正</h3>
+                        <p>ダメージを最小限に抑えながら、自然で美しいカールやストレートヘアへ導きます。</p>
+                        <ul>
+                            <li>デジタルパーマ: ¥10,000〜</li>
+                            <li>コールドパーマ: ¥8,000〜</li>
+                            <li>縮毛矯正: ¥15,000〜</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <h3>トリートメント & ヘッドスパ</h3>
+                        <p>髪の深部から補修し、艶と潤いを。日頃の疲れを癒すヘッドスパも人気です。</p>
+                        <ul>
+                            <li>髪質改善トリートメント: ¥4,000〜</li>
+                            <li>クイックトリートメント: ¥2,000〜</li>
+                            <li>アロマヘッドスパ(30分): ¥4,500〜</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Salon de Beaute éclat の特徴</h2>
+                    <p>お客様に最高の体験をお届けするための、私たちのこだわりをご紹介します。</p>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <img src="https://via.placeholder.com/600x400/a2d4c0/333333?text=Experienced+Stylist" alt="経験豊富なスタイリスト">
+                        <h3>経験豊富なスタイリスト</h3>
+                        <p>高い技術と豊富な経験を持つスタイリストが、お客様一人ひとりの髪質やライフスタイルに合わせた最適なスタイルをご提案します。</p>
+                    </div>
+                    <div class="feature-item">
+                        <img src="https://via.placeholder.com/600x400/d4b8a2/333333?text=Organic+Products" alt="厳選されたオーガニック製品">
+                        <h3>厳選されたオーガニック製品</h3>
+                        <p>髪と頭皮への優しさを追求し、厳選されたオーガニック製品を使用。ダメージを最小限に抑え、健やかな髪を育みます。</p>
+                    </div>
+                    <div class="feature-item">
+                        <img src="https://via.placeholder.com/600x400/a2c0d4/333333?text=Relaxing+Space" alt="プライベートな空間">
+                        <h3>リラックスできるプライベート空間</h3>
+                        <p>完全予約制で、ゆったりとくつろげるプライベートな空間を提供。周りを気にせず、心ゆくまで美容の時間を満喫できます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta">
+            <div class="container">
+                <h2>美しい髪は、あなたをもっと輝かせる。</h2>
+                <p>ご予約はお電話、または24時間対応のオンライン予約フォームから承っております。<br>お気軽にお問い合わせください。</p>
+                <a href="#" class="btn">オンラインで予約する</a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-logo">Salon de Beaute éclat</div>
+            <div class="footer-info">
+                <p>〒150-0043 東京都渋谷区道玄坂1丁目〇番〇号 エクラビル1F</p>
+                <p>電話番号: <a href="tel:03-1234-5678">03-1234-5678</a></p>
+                <p>営業時間: 火〜金 10:00 - 20:00 / 土日祝 09:00 - 19:00</p>
+                <p>定休日: 月曜日</p>
+            </div>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"></a>
+                <a href="#" aria-label="Instagram"></a>
+                <a href="#" aria-label="X (Twitter)"></a>
+            </div>
+            <p class="copyright">&copy; 2023 Salon de Beaute éclat All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth Scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        const headerOffset = document.querySelector('header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerOffset - 20; // ヘッダーの高さと少し余白を考慮
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+
+                        // モバイルメニューが開いている場合は閉じる
+                        const navList = document.querySelector('.nav-list');
+                        const menuToggle = document.querySelector('.menu-toggle');
+                        if (navList.classList.contains('active')) {
+                            navList.classList.remove('active');
+                            menuToggle.classList.remove('active');
+                        }
+                    }
+                });
+            });
+
+            // Mobile Menu Toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navList = document.querySelector('.nav-list');
+
+            if (menuToggle && navList) {
+                menuToggle.addEventListener('click', () => {
+                    navList.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
