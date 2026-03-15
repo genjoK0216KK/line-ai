@@ -1,8 +1,9 @@
-import Anthropic from '@anthropic-ai/sdk';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import fs from 'fs';
 import path from 'path';
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
 
 const instruction = process.env.INSTRUCTION;
 const siteName = process.env.SITE_NAME;
@@ -30,14 +31,12 @@ const systemPrompt = `あなたはプロのWebデザイナーです。
 \`\`\`html から始めて \`\`\` で終わるフォーマットで返してください。`;
 
 async function generateHomepage() {
-  const response = await client.messages.create({
-    model: 'claude-opus-4-5',
-    max_tokens: 8192,
-    system: systemPrompt,
-    messages: [{ role: 'user', content: instruction }],
+  const response = await model.generateContent({
+    contents: [{ role: 'user', parts: [{ text: instruction }] }],
+    systemInstruction: { parts: [{ text: systemPrompt }] },
   });
 
-  const content = response.content[0].text;
+  const content = response.response.text();
   const htmlMatch = content.match(/```html\n([\s\S]+?)\n```/);
   const html = htmlMatch ? htmlMatch[1] : content.trim();
 

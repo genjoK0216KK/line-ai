@@ -36,7 +36,7 @@ jobs:
 
       - name: Generate homepage
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           INSTRUCTION: ${{ inputs.instruction }}
           SITE_NAME: ${{ inputs.site_name }}
         run: node src/generate.js
