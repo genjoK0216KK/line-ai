@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>株式会社三原 - 地域社会と共に、未来を創造する</title>
+    <!-- Google Fonts - Noto Sans JP, Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* 基本リセット */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+            scroll-behavior: smooth; /* スムーズスクロールを有効にする */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 変数 */
+        :root {
+            --primary-color: #0056b3; /* 信頼感のある青 */
+            --secondary-color: #007bff; /* 明るい青 */
+            --accent-color: #28a745; /* 強調用グリーン */
+            --text-color: #333;
+            --light-text-color: #f4f4f4;
+            --bg-light: #ffffff;
+            --bg-dark: #333;
+        }
+
+        /* 全体コンテナ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ヘッダー */
+        .header {
+            background-color: var(--bg-light);
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            position: sticky; /* スクロールしても固定 */
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+
+        .nav-menu ul {
+            display: flex;
+        }
+
+        .nav-menu ul li {
+            margin-left: 30px;
+        }
+
+        .nav-menu ul li a {
+            color: var(--text-color);
+            font-weight: 700;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-menu ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu ul li a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none; /* デフォルトでは非表示 */
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001; /* ナビメニューより前面に */
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-color);
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            background: linear-gradient(rgba(0, 86, 179, 0.7), rgba(0, 86, 179, 0.7)), url('https://source.unsplash.com/random/1920x1080/?cityscape,japan,business') no-repeat center center/cover;
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 150px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--light-text-color);
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #218838; /* Accent color slightly darker */
+            transform: translateY(-2px);
+        }
+
+        /* セクション共通スタイル */
+        .section {
+            padding: 80px 0;
+            background-color: var(--bg-light);
+        }
+
+        .section:nth-of-type(odd) { /* 奇数番目のセクションに別の背景色 */
+            background-color: #f0f4f8;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+            width: fit-content; /* テキストの幅に合わせる */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* サービスセクション */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-item {
+            background-color: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .service-item img {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-item h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .service-item p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* 会社概要/特徴セクション */
+        .company-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .company-info-text {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+        }
+        
+        .company-info-text h3 {
+            font-size: 32px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .company-info-text p {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        .company-info-text ul {
+            margin-top: 20px;
+            padding-left: 20px;
+            list-style: disc;
+            color: #555;
+        }
+
+        .company-info-text ul li {
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
+
+        .company-info-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .company-info-image img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* CTAセクション */
+        .cta {
+            background: linear-gradient(rgba(0, 86, 179, 0.85), rgba(0, 86, 179, 0.85)), url('https://source.unsplash.com/random/1920x400/?office,desk,people') no-repeat center center/cover;
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .cta h2 {
+            font-size: 40px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .cta p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* フッター */
+        .footer {
+            background-color: var(--bg-dark);
+            color: #ccc;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer .logo {
+            color: var(--light-text-color);
+            margin-bottom: 20px;
+        }
+
+        .footer-nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-nav ul li {
+            margin: 0 15px 10px;
+        }
+
+        .footer-nav ul li a {
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            color: #ccc;
+            font-size: 24px;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            .header .container {
+                flex-wrap: wrap;
+            }
+
+            .nav-menu {
+                order: 2; /* ハンバーガーメニューの下に配置 */
+                width: 100%;
+                display: none; /* デフォルトで非表示 */
+                flex-direction: column;
+                background-color: var(--bg-light);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                position: absolute;
+                top: 60px; /* ヘッダーの高さに合わせて調整 */
+                left: 0;
+                padding: 15px 0;
+                border-top: 1px solid #eee;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-menu ul li {
+                margin: 0;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+            }
+
+            .nav-menu ul li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-menu ul li a {
+                display: block;
+                padding: 15px 0;
+                color: var(--text-color);
+            }
+
+            .nav-menu ul li a::after {
+                display: none; /* ホバーアンダーラインを非表示 */
+            }
+
+            .nav-menu ul li a:hover {
+                background-color: #f0f0f0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                padding: 100px 20px;
+                min-height: 400px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 32px;
+                margin-bottom: 40px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .company-info {
+                flex-direction: column;
+            }
+
+            .company-info-text h3 {
+                font-size: 28px;
+            }
+
+            .company-info-text p {
+                font-size: 16px;
+            }
+            
+            .company-info-text ul {
+                padding-left: 20px;
+            }
+
+            .cta h2 {
+                font-size: 32px;
+            }
+
+            .cta p {
+                font-size: 18px;
+            }
+
+            .footer-nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-nav ul li {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="#hero" class="logo">株式会社三原</a>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#hero">ホーム</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#about">企業情報</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>地域社会と共に、未来を創造する</h1>
+                <p>株式会社三原は、お客様の課題を解決し、持続可能な社会の実現に貢献します。</p>
+                <a href="#contact" class="btn">お問い合わせはこちら</a>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <div class="container">
+                <h2 class="section-title">サービス内容</h2>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <img src="https://source.unsplash.com/random/100x100/?consulting,business" alt="ビジネスコンサルティング">
+                        <h3>ビジネスコンサルティング</h3>
+                        <p>お客様のビジネス成長を加速させるための戦略立案から実行まで、一貫したサポートを提供します。</p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://source.unsplash.com/random/100x100/?solution,software,tech" alt="ITソリューション開発">
+                        <h3>ITソリューション開発</h3>
+                        <p>最新のテクノロジーを活用し、お客様の業務効率化、DX推進を実現する最適なソリューションを開発します。</p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://source.unsplash.com/random/100x100/?sustainability,green,environment" alt="持続可能な社会への貢献">
+                        <h3>持続可能な社会への貢献</h3>
+                        <p>環境に配慮した事業活動を通じて、地域社会と共に持続可能な未来を築くための取り組みを推進します。</p>
+                    </div>
+                    <div class="service-item">
+                        <img src="https://source.unsplash.com/random/100x100/?community,partnership,team" alt="地域連携・活性化支援">
+                        <h3>地域連携・活性化支援</h3>
+                        <p>地域の魅力を最大限に引き出し、新たな価値を創造するための企画・運営をサポートします。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">企業情報・私たちの強み</h2>
+                <div class="company-info">
+                    <div class="company-info-text">
+                        <h3>地域に根ざし、信頼を築く</h3>
+                        <p>株式会社三原は、創業以来、地域社会の発展に貢献することを経営理念として掲げてきました。お客様一人ひとりの声に耳を傾け、最適なソリューションを提供することで、厚い信頼をいただいています。</p>
+                        <p>変化の激しい時代においても、常に新しい価値創造に挑戦し、持続可能な社会の実現に向けた取り組みを強化しています。私たちは、プロフェッショナルな知識と情熱をもって、お客様の未来を共に創造します。</p>
+                        <ul>
+                            <li>卓越した専門知識と経験</li>
+                            <li>お客様に寄り添う丁寧なサポート</li>
+                            <li>地域社会との強固な連携</li>
+                            <li>柔軟な発想と問題解決能力</li>
+                        </ul>
+                    </div>
+                    <div class="company-info-image">
+                        <img src="https://source.unsplash.com/random/800x600/?office,teamwork,meeting" alt="会社概要イメージ">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="cta">
+            <div class="container">
+                <h2>まずはお気軽にお問い合わせください</h2>
+                <p>お客様のビジネスに関するご相談や、当社のサービスについてご興味がありましたら、お気軽にお問い合わせください。専任の担当者が丁寧にご対応させていただきます。</p>
+                <a href="mailto:info@mihara.co.jp" class="btn">お問い合わせフォームへ</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="logo">株式会社三原</div>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="#hero">ホーム</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#about">企業情報</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                    <li><a href="#">プライバシーポリシー</a></li>
+                </ul>
+            </nav>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p>&copy; 2023 株式会社三原 All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-menu ul li a');
+
+            // ハンバーガーメニューの開閉
+            hamburger.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                // ハンバーガーアイコンの視覚的な変化
+                hamburger.classList.toggle('active');
+            });
+
+            // ナビゲーションリンククリックでメニューを閉じる (モバイル時)
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    }
+                });
+            });
+
+            // スムーズスクロール
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        const headerOffset = document.querySelector('.header').offsetHeight; // ヘッダーの高さを取得
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerOffset; // ヘッダー分をオフセット
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
