@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salon de Refine - 洗練された美をあなたに</title>
+    <!-- Google Fonts (CDN) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Font Awesome (CDN for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        :root {
+            --primary-color: #A37F6C; /* 落ち着いたブラウン系のメインカラー */
+            --secondary-color: #EBDBCF; /* 明るいベージュ系のサブカラー */
+            --accent-color: #6A4B3A; /* ダークブラウン系のアクセント */
+            --text-color: #333333;
+            --light-text-color: #F8F8F8;
+            --background-light: #FBF9F6;
+            --font-main: 'Noto Sans JP', sans-serif;
+            --font-heading: 'Playfair Display', serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--background-light);
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 2rem; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.75rem; }
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--secondary-color);
+        }
+
+        .button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: var(--accent-color);
+            color: var(--light-text-color); /* ホバー時も色が変わらないように */
+        }
+
+        /* Header & Navigation */
+        .header {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--text-color);
+            font-weight: 400;
+            position: relative;
+        }
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Navigation */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+        .hamburger .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 4px 0;
+            transition: 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: fixed; /* Use fixed for full screen overlay */
+                top: 0;
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                padding-top: 100px; /* Adjust based on header height */
+                height: 100vh;
+                text-align: center;
+                justify-content: flex-start; /* Align items to the top */
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .nav-menu li {
+                margin: 20px 0;
+            }
+            .nav-menu a {
+                font-size: 1.2rem;
+            }
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+        }
+
+
+        /* Hero Section */
+        #hero {
+            /* Unsplashのダミー画像を使用。実際の運用時には、美容院の美しい写真に差し替えてください。 */
+            background: url('https://source.unsplash.com/1600x900/?hair-salon,beautiful-hair') no-repeat center center/cover;
+            color: var(--light-text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            margin-top: 70px; /* Adjust for fixed header */
+        }
+
+        #hero .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        #hero h1 {
+            font-family: var(--font-heading);
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            color: var(--light-text-color);
+            text-shadow: 0 3px 6px rgba(0,0,0,0.7);
+        }
+
+        #hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 3rem;
+            }
+            #hero p {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Services Section */
+        #services h2 {
+            margin-bottom: 3rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-item {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+        .service-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-item i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .service-item h3 {
+            font-family: var(--font-main);
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .service-item .price {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* About Section */
+        #about .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+            text-align: left;
+            margin-top: 40px;
+        }
+
+        #about .about-text,
+        #about .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        #about .about-image img {
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            object-fit: cover;
+            width: 100%;
+            height: 400px;
+        }
+
+        #about h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* CTA Section */
+        #cta {
+            /* Unsplashのダミー画像を使用。実際の運用時には、美容院の美しい写真に差し替えてください。 */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://source.unsplash.com/1600x900/?hair-styling,salon-interior') no-repeat center center/cover;
+            color: var(--light-text-color);
+            padding: 100px 0;
+        }
+
+        #cta h2 {
+            color: var(--light-text-color);
+            margin-bottom: 2rem;
+            font-size: 3rem;
+        }
+
+        #cta p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        #cta .contact-info {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        #cta .contact-info span {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+        #cta .contact-info i {
+            color: var(--secondary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .footer .logo {
+            color: var(--light-text-color);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--secondary-color);
+            font-weight: 300;
+        }
+        .footer-links a:hover {
+            color: var(--light-text-color);
+        }
+
+        .social-icons {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .social-icons a {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: var(--light-text-color);
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+            margin: 5px 0;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Utility classes */
+        .text-center {
+            text-align: center;
+        }
+        .mb-3 {
+            margin-bottom: 1.5rem;
+        }
+        .mt-3 {
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">Salon de Refine</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#hero">ホーム</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#about">サロンについて</a></li>
+                    <li><a href="#cta">ご予約</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Salon de Refine</h1>
+                <p>あなたの「なりたい」を叶える、上質プライベートサロン</p>
+                <a href="#cta" class="button">今すぐ予約する</a>
+            </div>
+        </section>
+
+        <section id="services" class="container">
+            <h2>サービス</h2>
+            <p class="mb-3">お客様一人ひとりの魅力を最大限に引き出す、こだわりのメニューをご用意しております。</p>
+
+            <div class="service-grid">
+                <div class="service-item">
+                    <i class="fas fa-cut"></i>
+                    <h3>カット</h3>
+                    <p>骨格や髪質に合わせたオーダーメイドカットで、自宅でのスタイリングも簡単に。</p>
+                    <span class="price">¥5,000〜</span>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-palette"></i>
+                    <h3>カラー</h3>
+                    <p>トレンドを取り入れつつ、お客様の肌色に合う最適なカラーをご提案します。</p>
+                    <span class="price">¥7,000〜</span>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-wave-square"></i>
+                    <h3>パーマ</h3>
+                    <p>ダメージを最小限に抑えながら、やわらかく、長持ちするパーマスタイルを実現。</p>
+                    <span class="price">¥8,000〜</span>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-hand-sparkles"></i>
+                    <h3>トリートメント</h3>
+                    <p>髪の深部まで栄養を届け、内側から輝く美しい髪へ導きます。</p>
+                    <span class="price">¥4,000〜</span>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-head-side-mask"></i>
+                    <h3>ヘッドスパ</h3>
+                    <p>日頃の疲れを癒し、頭皮環境を整える極上のリラクゼーション体験。</p>
+                    <span class="price">¥3,500〜</span>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-brush"></i>
+                    <h3>セット・アレンジ</h3>
+                    <p>結婚式やイベントなど、特別な日のためのヘアセットもお任せください。</p>
+                    <span class="price">¥4,500〜</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2>Salon de Refineについて</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>洗練された空間と、心尽くしの技術で、あなただけの美を</h3>
+                        <p>「Salon de Refine」は、お客様一人ひとりが心からリラックスし、美しさを再発見できる場所でありたいと願っています。</p>
+                        <p>経験豊富なスタイリストが丁寧なカウンセリングを通じて、お客様の髪質、骨格、ライフスタイルに合わせた最適なヘアスタイルをご提案。最新のトレンドと確かな技術で、あなたの「なりたい」を形にします。</p>
+                        <p>また、厳選されたオーガニック製品を使用し、髪へのダメージを最小限に抑え、健やかで美しい髪へと導きます。忙しい日常を忘れ、自分だけの贅沢な時間をお過ごしください。</p>
+                    </div>
+                    <div class="about-image">
+                        <!-- Unsplashのダミー画像を使用。実際の運用時には、サロンの内装写真に差し替えてください。 -->
+                        <img src="https://source.unsplash.com/800x600/?hair-salon-interior,stylist" alt="サロンの内部">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta">
+            <div class="container">
+                <h2>ご予約はこちら</h2>
+                <p>お客様のご来店を心よりお待ちしております。<br>オンライン予約またはお電話にて、お気軽にお問い合わせください。</p>
+                <!-- 実際の予約サイトへのリンクを設定してください -->
+                <a href="https://example.com/reservation" target="_blank" class="button">オンライン予約</a>
+                <div class="contact-info">
+                    <span><i class="fas fa-phone-alt"></i> お電話: <a href="tel:03-1234-5678" style="color: var(--light-text-color);">03-1234-5678</a></span>
+                    <span><i class="fas fa-clock"></i> 営業時間: 10:00 - 20:00 (火曜定休)</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <a href="#" class="logo">Salon de Refine</a>
+            <ul class="footer-links">
+                <li><a href="#hero">ホーム</a></li>
+                <li><a href="#services">サービス</a></li>
+                <li><a href="#about">サロンについて</a></li>
+                <li><a href="#cta">ご予約</a></li>
+                <li><a href="#">プライバシーポリシー</a></li>
+            </ul>
+            <div class="social-icons">
+                <!-- 実際のSNSアカウントへのリンクを設定してください -->
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>〒100-0005 東京都千代田区丸の内1-1-1 〇〇ビル 1F</p>
+            <p>Email: info@salonderefine.com</p>
+            <p>&copy; 2023 Salon de Refine All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const header = document.querySelector('.header');
+
+            // ハンバーガーメニューの開閉
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // ナビゲーションリンクのクリックでスムーススクロールとメニューを閉じる
+            document.querySelectorAll('.nav-menu a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // モバイルメニューが開いている場合は閉じる
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                    }
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = header.offsetHeight; // 固定ヘッダーの高さ
+                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = elementPosition - headerOffset - 20; // ヘッダーの高さと余白を考慮
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
