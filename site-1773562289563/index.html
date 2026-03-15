@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAIR SALON Luminous | あなただけの輝きを、ここで見つける。</title>
+    <!-- Google Fonts (CDN) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome (アイコン - CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ベーススタイル */
+        :root {
+            --primary-color: #A08D83; /* 落ち着いたベージュブラウン */
+            --secondary-color: #D6C7BF; /* 明るいベージュ */
+            --accent-color: #EBC376; /* ゴールド系のアクセント */
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #FBF9F7;
+            --bg-white: #FFFFFF;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Noto Sans JP', sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--text-light);
+            background-color: var(--bg-light);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-serif);
+            color: var(--text-dark);
+            margin-bottom: 0.8em;
+            letter-spacing: 0.05em;
+        }
+
+        h1 { font-size: 3em; line-height: 1.1; }
+        h2 { font-size: 2.5em; line-height: 1.2; text-align: center; margin-bottom: 1.5em; position: relative; padding-bottom: 0.5em;}
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background-color: var(--primary-color);
+            margin: 0.5em auto 0;
+        }
+        h3 { font-size: 1.8em; margin-bottom: 0.5em; }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--bg-white);
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #8C7C73; /* Primary slightly darker */
+            transform: translateY(-2px);
+            color: var(--bg-white);
+        }
+
+        /* ヘッダー */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 2.2em;
+            font-weight: 600;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+            white-space: nowrap; /* ロゴが改行されないように */
+        }
+
+        .nav-list {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-dark);
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* ハンバーガーメニュー (モバイル用) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-color);
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://source.unsplash.com/1600x900/?hair-salon-interior,hair-style') no-repeat center center/cover;
+            color: var(--bg-white);
+            text-align: center;
+            padding: 180px 0 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+            margin-top: 80px; /* Header height */
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 4.5em;
+            margin-bottom: 15px;
+            color: var(--bg-white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            font-weight: 300;
+            color: var(--secondary-color);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+        }
+
+        /* セクション共通 */
+        section {
+            padding: 80px 0;
+            margin-bottom: 20px;
+        }
+
+        .section-bg-light {
+            background-color: var(--bg-white);
+        }
+        .section-bg-primary {
+            background-color: var(--secondary-color);
+        }
+
+
+        /* サービス紹介 */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-item {
+            background-color: var(--bg-white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .service-item i {
+            font-size: 3.5em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .service-item h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .service-item p {
+            font-size: 1em;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .service-item .price {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.2em;
+        }
+
+        /* 会社概要 / 特徴 */
+        .about-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .about-image, .about-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .about-content h3 {
+            font-family: var(--font-serif);
+            font-size: 2.2em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .about-content ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .about-content ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .about-content ul li::before {
+            content: '\f00c'; /* Font Awesome check icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* CTAセクション */
+        .cta {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://source.unsplash.com/1600x600/?hair-stylist-working,hair-salon-relax') no-repeat center center/cover;
+            color: var(--bg-white);
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .cta h2 {
+            color: var(--bg-white);
+            font-size: 3em;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+        }
+        .cta h2::after {
+            background-color: var(--accent-color);
+        }
+
+        .cta p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--secondary-color);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* フッター */
+        .footer {
+            background-color: var(--text-dark);
+            color: var(--secondary-color);
+            padding: 60px 0 30px;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 2.5em;
+            font-weight: 600;
+            color: var(--bg-white);
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .footer-info p {
+            margin-bottom: 10px;
+        }
+
+        .social-links {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            color: var(--bg-white);
+            font-size: 1.5em;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            width: 100%;
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 992px) {
+            .hero {
+                padding: 150px 0 100px;
+            }
+            .hero h1 {
+                font-size: 3.5em;
+            }
+            .hero p {
+                font-size: 1.2em;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            h3 {
+                font-size: 1.5em;
+            }
+            .about-grid {
+                flex-direction: column;
+            }
+            .about-content, .about-image {
+                min-width: unset;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header .container {
+                padding: 0 20px;
+            }
+            .nav-list {
+                display: none; /* Hide nav by default */
+                flex-direction: column;
+                position: absolute;
+                top: 80px; /* Adjust based on header height */
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.98);
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                padding: 20px 0;
+                border-top: 1px solid var(--secondary-color);
+            }
+            .nav-list.active {
+                display: flex;
+            }
+            .nav-item {
+                margin: 10px 0;
+                text-align: center;
+            }
+            .nav-link {
+                display: block;
+                padding: 10px 0;
+                font-size: 1.1em;
+                color: var(--primary-color);
+            }
+            .nav-link::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .nav-link:hover::after {
+                width: 50%; /* Shorter line for mobile */
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                padding: 120px 0 80px;
+                margin-top: 70px; /* Smaller header */
+            }
+            .hero h1 {
+                font-size: 2.8em;
+            }
+            .hero p {
+                font-size: 1.1em;
+            }
+            h2 {
+                font-size: 1.8em;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            section {
+                padding: 60px 0;
+            }
+            .cta h2 {
+                font-size: 2.5em;
+            }
+            .cta p {
+                font-size: 1em;
+            }
+            .footer-logo {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.8em;
+            }
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.9em;
+            }
+            h2 {
+                font-size: 1.6em;
+            }
+            h3 {
+                font-size: 1.3em;
+            }
+            .service-item i {
+                font-size: 3em;
+            }
+            .cta h2 {
+                font-size: 2em;
+            }
+        }
+
+        /* Hamburger menu animations */
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">HAIR SALON Luminous</a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#services" class="nav-link">サービス</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">サロンについて</a></li>
+                    <li class="nav-item"><a href="#access" class="nav-link">アクセス</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">ご予約</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger" aria-label="メニューを開く">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>HAIR SALON Luminous</h1>
+                <p>あなただけの輝きを、ここで見つける。<br>日常に、小さな贅沢を。</p>
+                <a href="#contact" class="btn">オンライン予約はこちら</a>
+            </div>
+        </section>
+
+        <section id="services" class="section-bg-light">
+            <div class="container">
+                <h2>Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <i class="fas fa-cut" aria-hidden="true"></i>
+                        <h3>カット</h3>
+                        <p>骨格や髪質に合わせた、お客様一人ひとりの魅力を最大限に引き出すスタイルをご提案します。</p>
+                        <span class="price">¥5,500〜</span>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-tint" aria-hidden="true"></i>
+                        <h3>カラー</h3>
+                        <p>トレンドを取り入れつつ、肌色や瞳の色に合わせたパーソナルカラーで、似合わせを実現します。</p>
+                        <span class="price">¥8,800〜</span>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-wind" aria-hidden="true"></i>
+                        <h3>パーマ</h3>
+                        <p>再現性の高いパーマで、ご自宅でのスタイリングも簡単に。朝の準備が楽になります。</p>
+                        <span class="price">¥9,900〜</span>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-spa" aria-hidden="true"></i>
+                        <h3>ヘッドスパ</h3>
+                        <p>日頃の疲れを癒やす極上のヘッドスパ。頭皮の健康を促進し、美しい髪を育みます。</p>
+                        <span class="price">¥4,400〜</span>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-hand-sparkles" aria-hidden="true"></i>
+                        <h3>トリートメント</h3>
+                        <p>髪のダメージレベルに合わせた最適なトリートメントで、うるおいと輝きを取り戻します。</p>
+                        <span class="price">¥3,300〜</span>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-brush" aria-hidden="true"></i>
+                        <h3>ヘアセット</h3>
+                        <p>結婚式やパーティーなど、特別な日のための華やかなヘアアレンジもお任せください。</p>
+                        <span class="price">¥4,400〜</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section-bg-primary">
+            <div class="container">
+                <h2>HAIR SALON Luminousについて</h2>
+                <div class="about-grid">
+                    <div class="about-image">
+                        <img src="https://source.unsplash.com/600x400/?hair-salon-interior-stylist" alt="HAIR SALON Luminousの施術風景" loading="lazy">
+                    </div>
+                    <div class="about-content">
+                        <h3>私たちのこだわり</h3>
+                        <p>HAIR SALON Luminousは、「あなただけの輝き」を見つけるお手伝いをコンセプトに、お客様一人ひとりの個性と美しさを引き出すサービスを提供しています。</p>
+                        <ul>
+                            <li>カウンセリングを重視し、理想のスタイルを共有します。</li>
+                            <li>髪と頭皮に優しい厳選されたオーガニック製品を使用しています。</li>
+                            <li>最新の技術とトレンドを取り入れたスタイリングをご提案します。</li>
+                            <li>日々の忙しさを忘れさせる、リラックスできる空間を提供します。</li>
+                            <li>経験豊富なスタイリストが、あなたのお悩みに寄り添います。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="access" class="section-bg-light">
+            <div class="container">
+                <h2>Access & Info</h2>
+                <div class="about-grid"> <!-- Reusing about-grid for layout -->
+                    <div class="about-content">
+                        <h3>店舗情報</h3>
+                        <p><strong>HAIR SALON Luminous</strong></p>
+                        <address>
+                            〒150-0001 東京都渋谷区神宮前1-2-3 ルミナスビル1F
+                        </address>
+                        <p><strong>営業時間:</strong> 10:00 - 20:00 (最終受付 19:00)</p>
+                        <p><strong>定休日:</strong> 火曜日、第3水曜日</p>
+                        <p><strong>電話番号:</strong> <a href="tel:03-1234-5678">03-1234-5678</a></p>
+                        <p>JR山手線「原宿駅」竹下口より徒歩5分</p>
+                        <p>東京メトロ千代田線・副都心線「明治神宮前駅」出口5より徒歩3分</p>
+                    </div>
+                    <div class="about-image">
+                        <!-- Google Maps埋め込みの例 -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.2458448839213!2d139.70258831525997!3d35.69805378018698!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c807b1a2079%3A0x6a1006d9a9c2b4e!2sJingumae%2C%20Shibuya%20City%2C%20Tokyo%20150-0001!5e0!3m2!1sen!2sjp!4v1678912345678!5m2!1sen!2sjp" width="100%" height="300" style="border:0; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="HAIR SALON Luminous アクセスマップ"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="contact" class="cta">
+            <div class="container">
+                <h2>ご予約・お問い合わせ</h2>
+                <p>HAIR SALON Luminousでは、お客様一人ひとりに合わせた丁寧なカウンセリングと施術を心がけております。美しい髪と癒やしの時間をご提供できるよう、心を込めて対応させていただきます。</p>
+                <a href="https://reserve.example.com" target="_blank" rel="noopener noreferrer" class="btn">オンライン予約はこちら</a>
+                <p style="margin-top: 20px; font-size: 1.1em;">お電話でのお問い合わせも歓迎です: <a href="tel:03-1234-5678" style="color: var(--accent-color); font-weight: bold;">03-1234-5678</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">HAIR SALON Luminous</div>
+            <div class="footer-info">
+                <address>
+                    <p>〒150-0001 東京都渋谷区神宮前1-2-3 ルミナスビル1F</p>
+                </address>
+                <p>営業時間: 10:00 - 20:00 | 定休日: 火曜日、第3水曜日</p>
+                <p>電話番号: <a href="tel:03-1234-5678">03-1234-5678</a></p>
+            </div>
+            <div class="social-links">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p class="copyright">&copy; 2023 HAIR SALON Luminous. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navList = document.querySelector('.nav-list');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navList.classList.toggle('active');
+                // ハンバーガーメニューの状態に応じてaria-expanded属性を切り替える
+                const isExpanded = hamburger.classList.contains('active');
+                hamburger.setAttribute('aria-expanded', isExpanded);
+                navList.setAttribute('aria-hidden', !isExpanded);
+            });
+
+            // ナビゲーションリンクをクリックしたらメニューを閉じる
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('active');
+                    navList.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', false);
+                    navList.setAttribute('aria-hidden', true);
+                });
+            });
+
+            // 初期状態のアクセシビリティ設定
+            hamburger.setAttribute('aria-controls', navList.id || 'main-nav');
+            hamburger.setAttribute('aria-expanded', false);
+            navList.setAttribute('aria-hidden', true);
+            if (!navList.id) {
+                navList.id = 'main-nav'; // navListにIDを付与
+            }
+        });
+    </script>
+</body>
+</html>
