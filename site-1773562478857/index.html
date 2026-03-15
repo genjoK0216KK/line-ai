@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三原 - 未来を創造するパートナーシップ</title>
+    <meta name="description" content="三原は、お客様の課題を解決し、新たな価値を創造するプロフェッショナル集団です。地域に根ざし、未来を拓きます。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Base Styles */
+        :root {
+            --primary-color: #2c3e50; /* ダークブルーグレー */
+            --accent-color: #3cb371; /* ミディアムアクアマリン */
+            --light-bg-color: #f8f9fa;
+            --dark-text-color: #333333;
+            --light-text-color: #ffffff;
+            --border-color: #e0e0e0;
+            --font-family-jp: 'Noto Sans JP', sans-serif;
+            --font-family-en: 'Montserrat', sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family-jp);
+            line-height: 1.6;
+            color: var(--dark-text-color);
+            background-color: var(--light-bg-color);
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-family-jp);
+            margin-bottom: 0.8em;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 2.5em; }
+        h2 { font-size: 2em; }
+        h3 { font-size: 1.5em; }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: darken(var(--accent-color), 10%);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--light-text-color);
+            padding: 14px 28px;
+            border-radius: 5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .button:hover {
+            background-color: #2e8b57; /* accent-colorを少し暗く */
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 60px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        /* Header & Navigation */
+        .header {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-family-en);
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--light-text-color);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--light-text-color);
+            font-weight: 400;
+            font-size: 1.1em;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--light-text-color);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(10.5px) rotate(45deg);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-10.5px) rotate(-45deg);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://source.unsplash.com/1600x900/?japan-coast,mountain,city,hiroshima') center/cover no-repeat;
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 150px 0;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-family-jp);
+            font-size: 3.8em;
+            margin-bottom: 20px;
+            color: var(--light-text-color);
+            line-height: 1.1;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background-color: var(--light-bg-color);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--light-text-color);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card i { /* Placeholder for icon */
+            font-size: 3.5em;
+            color: var(--accent-color);
+            margin-bottom: 25px;
+            display: block;
+        }
+        
+        .service-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .service-card p {
+            font-size: 1.1em;
+            color: #555;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: #f0f4f7; /* Light blue-gray background */
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 400px; /* Adjust as needed */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .about-text {
+            flex: 2;
+        }
+
+        .about-text h2 {
+            text-align: left;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+
+        .about-text p {
+            font-size: 1.1em;
+            margin-bottom: 1.5em;
+        }
+
+        /* Contact CTA Section */
+        .contact-cta {
+            background: var(--primary-color);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .contact-cta h2 {
+            color: var(--light-text-color);
+            font-size: 2.8em;
+            margin-bottom: 25px;
+        }
+
+        .contact-cta p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #222;
+            color: #ccc;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .footer p {
+            margin-bottom: 0.5em;
+        }
+
+        .footer a {
+            color: var(--accent-color);
+            margin: 0 10px;
+        }
+
+        /* Mobile Responsiveness */
+        @media screen and (max-width: 992px) {
+            .hero h1 {
+                font-size: 3em;
+            }
+            .hero p {
+                font-size: 1.3em;
+            }
+            .about-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .about-image {
+                min-width: unset;
+                width: 100%;
+            }
+            .about-text h2 {
+                text-align: center;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .header .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Adjust based on header height */
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+            .header .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                margin: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 15px 20px;
+                text-align: center;
+            }
+            .nav-menu a::after {
+                display: none; /* Hide hover effect on mobile menu */
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                padding: 100px 0;
+            }
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .section-title {
+                font-size: 2em;
+                margin-bottom: 40px;
+            }
+
+            .services, .about, .contact-cta {
+                padding: 60px 0;
+            }
+
+            .service-card {
+                padding: 30px;
+            }
+            .service-card h3 {
+                font-size: 1.5em;
+            }
+            .service-card p {
+                font-size: 1em;
+            }
+            .about-text h2 {
+                font-size: 2em;
+            }
+            .about-text p {
+                font-size: 1em;
+            }
+            .contact-cta h2 {
+                font-size: 2.2em;
+            }
+            .contact-cta p {
+                font-size: 1em;
+            }
+            .button {
+                padding: 12px 24px;
+                font-size: 0.9em;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .logo {
+                font-size: 1.5em;
+            }
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .section-title {
+                font-size: 1.8em;
+            }
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-cta h2 {
+                font-size: 1.8em;
+            }
+        }
+
+        /* Font Awesome CDN (for icons) */
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">MIHARA</a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#hero">ホーム</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#about">会社概要</a></li>
+                    <li><a href="#contact-cta">お問い合わせ</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1 class="fade-in-up">未来を創造するパートナーシップ</h1>
+                <p class="fade-in-up delay-1">三原は、お客様の成長と成功を最前線でサポートします。</p>
+                <a href="#contact-cta" class="button fade-in-up delay-2">お問い合わせはこちら</a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <h2 class="section-title">私たちのサービス</h2>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>コンサルティング</h3>
+                        <p>お客様のビジネス課題を深く理解し、最適な戦略と具体的な解決策を提案します。データに基づいたアプローチで持続的な成長を支援します。</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>市場調査・分析</h3>
+                        <p>ターゲット市場の動向、競合分析、顧客ニーズを詳細に調査し、的確なデータとインサイトを提供。意思決定を強力にサポートします。</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-cogs"></i>
+                        <h3>業務効率化支援</h3>
+                        <p>無駄を排除し、業務プロセスを最適化することで生産性向上に貢献します。最新のツール導入からワークフロー改善まで幅広く対応します。</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-globe"></i>
+                        <h3>グローバル展開支援</h3>
+                        <p>海外市場への進出、国際取引のサポート、異文化コミュニケーションのアドバイスなど、グローバルビジネスを強力に推進します。</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-users"></i>
+                        <h3>人材育成プログラム</h3>
+                        <p>社員のスキルアップ、リーダーシップ開発、チームビルディングなど、組織全体のパフォーマンス向上に貢献する研修プログラムを提供します。</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-handshake"></i>
+                        <h3>パートナーシップ構築</h3>
+                        <p>信頼できるビジネスパートナーとの連携を支援し、新たな事業機会の創出やシナジー効果の最大化を図ります。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section (Company Profile/Features) -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">三原について</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="https://source.unsplash.com/800x600/?office,teamwork,hiroshima" alt="三原のオフィス風景">
+                    </div>
+                    <div class="about-text">
+                        <h3>地域に根差し、未来を拓く</h3>
+                        <p>三原は、長年にわたり培ってきた専門知識と経験を活かし、お客様の事業成長を支援するプロフェッショナルファームです。私たちは、単なるコンサルタントではなく、お客様と共に考え、共に汗を流す真のパートナーでありたいと願っています。</p>
+                        <p>特に、変化の激しい現代において、お客様が直面する多様な課題に対し、柔軟かつ迅速に対応できるソリューションを提供することに注力しています。地域社会への貢献を忘れず、持続可能な発展を目指します。</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle" style="color:var(--accent-color); margin-right: 10px;"></i><strong>専門性と経験:</strong> 各分野のエキスパートが課題解決をリード</li>
+                            <li><i class="fas fa-check-circle" style="color:var(--accent-color); margin-right: 10px;"></i><strong>地域密着型アプローチ:</strong> 地域経済の活性化に貢献</li>
+                            <li><i class="fas fa-check-circle" style="color:var(--accent-color); margin-right: 10px;"></i><strong>お客様第一主義:</strong> 徹底した顧客目線でのサービス提供</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact CTA Section -->
+        <section id="contact-cta" class="contact-cta">
+            <div class="container">
+                <h2>お問い合わせ</h2>
+                <p>三原は、お客様からのご相談をいつでも歓迎しております。事業に関するお悩みやご要望がございましたら、お気軽にお問い合わせください。専門スタッフが丁寧に対応させていただきます。</p>
+                <a href="mailto:info@mihara.com" class="button">ご相談はこちらから</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 Mihara. All rights reserved.</p>
+            <p>
+                <a href="#">プライバシーポリシー</a> |
+                <a href="#">サイトマップ</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open
+                if (document.getElementById('hamburger').classList.contains('active')) {
+                    document.getElementById('hamburger').classList.remove('active');
+                    document.querySelector('.nav-menu').classList.remove('active');
+                }
+            });
+        });
+
+        // Hamburger menu functionality
+        document.getElementById('hamburger').addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
