@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Lien (ル・リアン) - あなたの美しさを引き出すヘアサロン</title>
+    <meta name="description" content="Le Lienは、お客様一人ひとりの個性と美しさを最大限に引き出す、五感で感じる上質なヘアサロンです。日常に彩りを添える、あなただけのスタイルをご提案します。">
+    <meta name="keywords" content="美容院, ヘアサロン, カット, カラー, パーマ, トリートメント, ヘッドスパ, 東京, おしゃれ, 上質">
+    
+    <!-- Google Fonts: Playfair Display (見出し), Noto Sans JP (本文) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* CSS Variables for easy theme management */
+        :root {
+            --primary-bg-color: #fcfaf8; /* Warm Off-white */
+            --secondary-bg-color: #ede9e4; /* Light Beige */
+            --accent-color: #a78c7b; /* Muted Terracotta/Rose Brown */
+            --text-color: #333333;
+            --light-text-color: #555555;
+            --heading-color: #2a2a2a;
+            --border-color: #d1cbc4;
+            --button-bg-color: #a78c7b;
+            --button-text-color: #ffffff;
+            --hover-color: #8f7b70; /* Slightly darker accent */
+            --font-playfair: 'Playfair Display', serif;
+            --font-noto-sans: 'Noto Sans JP', sans-serif;
+        }
+
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-noto-sans);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--primary-bg-color);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--hover-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-playfair);
+            color: var(--heading-color);
+            margin-bottom: 0.8em;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 3em; }
+        h2 { font-size: 2.5em; text-align: center; margin-bottom: 1.5em; position: relative;}
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background-color: var(--accent-color);
+            margin: 15px auto 0;
+        }
+        h3 { font-size: 1.8em; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--button-bg-color);
+            color: var(--button-text-color);
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-noto-sans);
+            font-size: 0.95em;
+        }
+
+        .btn:hover {
+            background-color: var(--hover-color);
+            transform: translateY(-2px);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-bg-color);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-playfair);
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--heading-color);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            color: var(--light-text-color);
+            font-weight: 400;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-color);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Hero Section */
+        #hero {
+            background: url('https://source.unsplash.com/random/1600x900/?hair-salon-interior,beautiful-hair') no-repeat center center/cover;
+            color: var(--button-text-color);
+            text-align: center;
+            padding: 150px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
+            z-index: 1;
+        }
+
+        #hero .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #hero .hero-content h1 {
+            font-size: 4.5em;
+            margin-bottom: 0.2em;
+            color: var(--button-text-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        #hero .hero-content p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            font-family: var(--font-noto-sans);
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+        }
+
+        /* Sections common styles */
+        section {
+            padding: 80px 0;
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--secondary-bg-color);
+        }
+
+        /* Service Section */
+        #services .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--primary-bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .service-card-content {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .service-card-content h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            font-family: var(--font-playfair);
+            color: var(--accent-color);
+        }
+
+        .service-card-content p {
+            font-size: 0.95em;
+            color: var(--light-text-color);
+            margin-bottom: 20px;
+        }
+        
+        .service-card-content .price {
+            font-weight: 700;
+            font-size: 1.1em;
+            color: var(--heading-color);
+        }
+
+        /* Features / Concept Section */
+        #features .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 50px;
+            gap: 40px;
+        }
+
+        #features .feature-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        #features .feature-item-img {
+            flex: 1;
+            min-width: 40%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        #features .feature-item-img img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        #features .feature-item-text {
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        #features .feature-item-text h3 {
+            font-size: 2em;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        #features .feature-item-text p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--light-text-color);
+        }
+
+        /* CTA Section */
+        #cta {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://source.unsplash.com/random/1600x600/?hairdresser-working') no-repeat center center/cover;
+            color: var(--button-text-color);
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        #cta h2 {
+            color: var(--button-text-color);
+            font-size: 3em;
+            margin-bottom: 1em;
+        }
+        #cta h2::after {
+            background-color: var(--button-text-color);
+        }
+
+        #cta p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        #cta .cta-buttons .btn:first-child {
+            margin-right: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--heading-color);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 50px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        footer .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        footer .footer-section {
+            flex: 1;
+            min-width: 250px;
+            text-align: left;
+        }
+        
+        footer .footer-section:last-child {
+            text-align: right;
+        }
+
+        footer .footer-section h4 {
+            color: var(--button-text-color);
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            font-family: var(--font-noto-sans);
+        }
+
+        footer .footer-section p,
+        footer .footer-section ul {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        footer .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        footer .footer-section ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.5em;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        footer .copyright {
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 { font-size: 3.5em; }
+            h2 { font-size: 2em; }
+            h3 { font-size: 1.6em; }
+            #hero { padding: 120px 20px; }
+            #hero .hero-content h1 { font-size: 3.5em; }
+            #hero .hero-content p { font-size: 1.2em; }
+
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Adjust based on header height */
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-bg-color);
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                border-top: 1px solid var(--border-color);
+                padding: 20px 0;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                margin: 0;
+                text-align: center;
+                padding: 10px 0;
+                border-bottom: 1px solid var(--border-color);
+            }
+            .nav-menu li:last-child {
+                border-bottom: none;
+            }
+
+            .nav-menu a {
+                color: var(--heading-color);
+                display: block;
+                font-size: 1.1em;
+            }
+            .nav-menu a::after {
+                display: none; /* Hide underline for mobile */
+            }
+            .nav-menu a:hover {
+                background-color: var(--secondary-bg-color);
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            #features .feature-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            #features .feature-item:nth-child(even) {
+                flex-direction: column; /* Reset order for small screens */
+            }
+            #features .feature-item-text {
+                padding: 20px 0;
+            }
+            #features .feature-item-img {
+                min-width: 100%;
+            }
+
+            #cta h2 {
+                font-size: 2.5em;
+            }
+            #cta p {
+                font-size: 1.1em;
+            }
+            #cta .cta-buttons .btn {
+                display: block;
+                margin: 15px auto;
+            }
+            #cta .cta-buttons .btn:first-child {
+                margin-right: auto;
+            }
+
+            footer .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            footer .footer-section {
+                text-align: center;
+                min-width: unset;
+            }
+            footer .footer-section:last-child {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.8em; }
+            h2 { font-size: 1.8em; }
+            #hero { padding: 100px 15px; }
+            #hero .hero-content h1 { font-size: 2.8em; }
+            #hero .hero-content p { font-size: 1em; }
+            
+            .logo { font-size: 1.5em; }
+            .btn { padding: 10px 20px; font-size: 0.9em; }
+            
+            section { padding: 60px 0; }
+            .service-card-content h3 { font-size: 1.3em; }
+            
+            #features .feature-item-text h3 { font-size: 1.8em; }
+            #features .feature-item-text p { font-size: 1em; }
+
+            #cta h2 { font-size: 2em; }
+            #cta p { font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Le Lien</a>
+            <nav>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#hero">トップ</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#features">コンセプト</a></li>
+                    <li><a href="#cta">ご予約</a></li>
+                    <li><a href="#access">アクセス</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Le Lien (ル・リアン)</h1>
+                <p>日常に彩りを添える、あなただけのスタイルを。</p>
+                <a href="#cta" class="btn">オンライン予約はこちら</a>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <h2>Service</h2>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <img src="https://source.unsplash.com/random/400x300/?haircut,woman-hair" alt="カットサービス">
+                        <div class="service-card-content">
+                            <h3>カット</h3>
+                            <p>お客様の骨格や髪質に合わせた、再現性の高いカットをご提案。旬のスタイルから定番まで、どんなご要望にもお応えします。</p>
+                            <p class="price">¥6,600 ~</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="https://source.unsplash.com/random/400x300/?hair-color,balayage" alt="カラーサービス">
+                        <div class="service-card-content">
+                            <h3>カラー</h3>
+                            <p>ダメージを抑えた高品質な薬剤を使用。トレンドカラーからグレイカラーまで、お客様にぴったりの色味を見つけます。</p>
+                            <p class="price">¥8,800 ~</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="https://source.unsplash.com/random/400x300/?perm,curly-hair" alt="パーマサービス">
+                        <div class="service-card-content">
+                            <h3>パーマ</h3>
+                            <p>再現性の高いデジタルパーマから、髪に優しいコスメパーマまで。毎日のスタイリングが楽しくなる理想のカールを実現します。</p>
+                            <p class="price">¥9,900 ~</p>
+                        </div>
+                    </div>
+                    <div class="service-card">
+                        <img src="https://source.unsplash.com/random/400x300/?hair-treatment,spa" alt="トリートメントサービス">
+                        <div class="service-card-content">
+                            <h3>ヘアスパ＆トリートメント</h3>
+                            <p>厳選されたオーガニック製品と専門技術で、髪と頭皮を優しくケア。日々の疲れを癒し、芯から輝く美しい髪へ導きます。</p>
+                            <p class="price">¥4,400 ~</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features">
+            <div class="container">
+                <h2>Concept</h2>
+                <div class="feature-item">
+                    <div class="feature-item-img">
+                        <img src="https://source.unsplash.com/random/800x600/?hair-salon-interior-design" alt="サロンの内装">
+                    </div>
+                    <div class="feature-item-text">
+                        <h3>五感で感じる上質な空間</h3>
+                        <p>Le Lienは、お客様が心からリラックスできる、洗練された空間を追求しています。柔らかな自然光が差し込む店内、心地よい香りのアロマ、耳に優しいBGM。五感で感じる全てが、非日常のヘア体験を演出します。</p>
+                        <p>忙しい日常から離れ、自分だけの特別な時間をお過ごしください。</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-item-img">
+                        <img src="https://source.unsplash.com/random/800x600/?hairdresser-consultation" alt="丁寧なカウンセリング">
+                    </div>
+                    <div class="feature-item-text">
+                        <h3>一人ひとりに寄り添う丁寧なカウンセリング</h3>
+                        <p>お客様の「なりたい」を叶えるために、Le Lienでは徹底したカウンセリングを大切にしています。髪質、骨格、ライフスタイル、そしてお客様の言葉にならない想いまで汲み取り、プロの視点から最適なスタイルをご提案します。</p>
+                        <p>初めての方でもご安心ください。理想の自分に出会えるお手伝いをいたします。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cta">
+            <div class="container">
+                <h2>ご予約・お問い合わせ</h2>
+                <p>Le Lienで、あなただけの特別なヘア体験を。オンライン予約は24時間受付中です。お電話でもお気軽にお問い合わせください。</p>
+                <div class="cta-buttons">
+                    <a href="https://reserve.example.com" class="btn" target="_blank">オンライン予約</a>
+                    <a href="tel:03-1234-5678" class="btn"><i class="fas fa-phone-alt"></i> 電話をかける</a>
+                </div>
+            </div>
+        </section>
+        
+        <section id="access">
+            <div class="container">
+                <h2>店舗情報・アクセス</h2>
+                <div style="display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; align-items: flex-start;">
+                    <div style="flex: 1; min-width: 300px; max-width: 500px; text-align: left;">
+                        <h3>Le Lien (ル・リアン)</h3>
+                        <p><i class="fas fa-map-marker-alt"></i> 東京都渋谷区神宮前1-2-3 ル・リアンビル1F</p>
+                        <p><i class="fas fa-phone-alt"></i> 03-1234-5678</p>
+                        <p><i class="fas fa-clock"></i> 営業時間: 10:00 - 20:00 (最終受付19:00)</p>
+                        <p><i class="fas fa-calendar-alt"></i> 定休日: 毎週火曜日・第3月曜日</p>
+                        <p style="margin-top: 20px;"><a href="https://www.google.com/maps/search/東京都渋谷区神宮前1-2-3" target="_blank" class="btn" style="background-color: #3f51b5;"><i class="fas fa-map"></i> Googleマップで見る</a></p>
+                    </div>
+                    <div style="flex: 1; min-width: 300px; max-width: 600px;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.0125868846743!2d139.70287531525983!3d35.66982848019992!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b577366d749%3A0x86c2e3612a43b0d1!2z5p2x5Lyd5qiq5rO744K144O844Kv44OP44Oz44Kw44K_44O8!5e0!3m2!1sja!2sjp!4v1678901234567!5m2!1sja!2sjp" width="100%" height="350" style="border:0; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Le Lien (ル・リアン)</h4>
+                    <p>あなたの美しさを最大限に引き出す、<br>至福のヘア体験をご提供します。</p>
+                    <p>営業時間: 10:00 - 20:00 (火曜定休)</p>
+                </div>
+                <div class="footer-section">
+                    <h4>サイトマップ</h4>
+                    <ul>
+                        <li><a href="#hero">トップ</a></li>
+                        <li><a href="#services">サービス</a></li>
+                        <li><a href="#features">コンセプト</a></li>
+                        <li><a href="#cta">ご予約</a></li>
+                        <li><a href="#access">アクセス</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>お問い合わせ</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 東京都渋谷区神宮前1-2-3</p>
+                    <p><i class="fas fa-phone-alt"></i> 03-1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> info@lelien.jp</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/le_lien_salon" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://facebook.com/le_lien_salon" target="_blank" aria-label="Facebook"><i class="fab fa="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/le_lien_salon" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Le Lien. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
+            const navLinks = navMenu.querySelectorAll('a');
+
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                document.body.classList.toggle('no-scroll'); // Optional: prevent scrolling when menu is open
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (navMenu.classList.contains('active')) {
+                        // Close menu on link click for mobile
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                        document.body.classList.remove('no-scroll');
+                    }
+                    // Smooth scroll to section
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        window.scrollTo({
+                            top: offsetTop - 70, // Adjust for fixed header height
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Close menu if clicked outside when mobile menu is active
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 992 && navMenu.classList.contains('active') && 
+                    !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.classList.remove('no-scroll');
+                }
+            });
+            
+            // Optional: Prevent body scroll when menu is open
+            const style = document.createElement('style');
+            style.textContent = '.no-scroll { overflow: hidden; }';
+            document.head.append(style);
+        });
+    </script>
+</body>
+</html>
