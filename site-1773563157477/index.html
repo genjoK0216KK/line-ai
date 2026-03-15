@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAIR SALON LUNE | あなただけの美しさを引き出す、癒しの空間</title>
+    <meta name="description" content="HAIR SALON LUNEは、お客様一人ひとりの個性と美しさを最大限に引き出す、上質なヘアスタイルをご提供します。日常を忘れさせる癒しの空間で、心身ともにリフレッシュしてください。">
+    
+    <!-- Google Fonts Noto Sans JP -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            background-color: #FFFFFF;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            vertical-align: middle;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: #333333;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #DDAA99; /* Accent Color */
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #DDAA99; /* Accent Color */
+            color: #FFFFFF;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: #C29988; /* Darker Accent Color */
+        }
+
+        /* Header */
+        .header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333333;
+        }
+        
+        .logo span {
+            color: #DDAA99; /* Accent Color */
+        }
+
+        .nav ul {
+            display: flex;
+        }
+
+        .nav ul li {
+            margin-left: 30px;
+        }
+
+        .nav ul li a {
+            font-weight: 500;
+            color: #555555;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: #DDAA99; /* Accent Color */
+            transition: width 0.3s ease;
+        }
+
+        .nav ul li a:hover {
+            color: #DDAA99; /* Accent Color */
+        }
+        
+        .nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background: #333333;
+            margin-bottom: 5px;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: url('https://source.unsplash.com/random/1920x1080/?hair-salon,beauty,stylish') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #FFFFFF;
+            padding-top: 80px; /* Adjust for fixed header */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* About/Concept Section */
+        .about {
+            padding: 100px 0;
+            background-color: #f9f9f9;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: #DDAA99; /* Accent Color */
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #555555;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: #FFFFFF;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .service-card {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card i { /* Font Awesome icon */
+            font-size: 3rem;
+            color: #DDAA99; /* Accent Color */
+            margin-bottom: 20px;
+        }
+
+        .service-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333333;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #666666;
+            margin-bottom: 15px;
+        }
+
+        .service-card .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #DDAA99; /* Accent Color */
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: url('https://source.unsplash.com/random/1920x600/?hair-salon-interior,beauty-salon') center/cover no-repeat;
+            padding: 100px 0;
+            text-align: center;
+            color: #FFFFFF;
+            position: relative;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333333;
+            color: #FFFFFF;
+            padding: 50px 0;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 20px;
+        }
+        .footer-logo span {
+            color: #DDAA99; /* Accent Color */
+        }
+
+        .footer-nav ul {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap; /* Add flex-wrap for mobile */
+        }
+
+        .footer-nav ul li {
+            margin: 0 15px;
+        }
+
+        .footer-nav ul li a {
+            color: #CCCCCC;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav ul li a:hover {
+            color: #DDAA99; /* Accent Color */
+        }
+
+        .social-links {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #CCCCCC;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #DDAA99; /* Accent Color */
+        }
+
+        .contact-info {
+            margin-bottom: 20px;
+            color: #CCCCCC;
+        }
+        
+        .contact-info p {
+            margin-bottom: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+            .hero-content p {
+                font-size: 1.3rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .about-content {
+                flex-direction: column;
+            }
+            .about-image, .about-text {
+                flex: none;
+                width: 100%;
+            }
+            .about-image img {
+                height: 300px;
+            }
+            .service-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            .cta-content h2 {
+                font-size: 2.5rem;
+            }
+            .cta-content p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header .nav {
+                display: none; /* Hide desktop nav */
+                flex-direction: column;
+                position: absolute;
+                top: 70px; /* Below header */
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.98);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                padding: 20px 0;
+                z-index: 999;
+            }
+
+            .header .nav.active {
+                display: flex;
+            }
+
+            .nav ul {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav ul li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .nav ul li a {
+                display: block;
+                padding: 10px 0;
+                font-size: 1.2rem;
+                color: #333333;
+            }
+
+            .nav ul li a:hover {
+                color: #DDAA99; /* Accent Color */
+            }
+            .nav ul li a::after {
+                display: none; /* Hide underline on mobile menu */
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+            
+            /* Toggle animation */
+            .menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            .hero {
+                height: 80vh;
+                padding-top: 60px;
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .about, .services, .cta {
+                padding: 80px 0;
+            }
+            .service-card h4 {
+                font-size: 1.3rem;
+            }
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+            .cta-content p {
+                font-size: 1.1rem;
+            }
+            .footer-nav ul li {
+                margin: 5px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+            .about-text h3 {
+                font-size: 1.5rem;
+            }
+            .about-text p {
+                font-size: 0.95rem;
+            }
+            .service-card {
+                padding: 25px;
+            }
+            .service-card h4 {
+                font-size: 1.2rem;
+            }
+            .cta-content h2 {
+                font-size: 1.8rem;
+            }
+            .cta-content p {
+                font-size: 0.9rem;
+            }
+            .footer {
+                padding: 40px 0;
+            }
+            .footer-nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            .footer-nav ul li {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">HAIR SALON <span>LUNE</span></a>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#hero">トップ</a></li>
+                    <li><a href="#about">LUNEのこだわり</a></li>
+                    <li><a href="#services">メニュー</a></li>
+                    <li><a href="#contact">ご予約</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>HAIR SALON LUNE</h1>
+                <p>あなただけの美しさを引き出す、癒しの空間。</p>
+                <a href="#contact" class="btn">ご予約はこちら</a>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container text-center">
+                <h2 class="section-title">LUNEのこだわり</h2>
+                <div class="about-content">
+                    <div class="about-image">
+                        <img src="https://source.unsplash.com/random/600x400/?hair-styling,salon-interior" alt="HAIR SALON LUNEの店内">
+                    </div>
+                    <div class="about-text">
+                        <h3>お客様一人ひとりに寄り添う、パーソナルな体験</h3>
+                        <p>HAIR SALON LUNEでは、お客様が本来持っている魅力を最大限に引き出すため、丁寧なカウンセリングを最も大切にしています。ライフスタイルや髪質、理想のイメージを共有し、経験豊富なスタイリストが最適なスタイルをご提案。トレンドを取り入れつつ、あなたらしさを表現するお手伝いをいたします。</p>
+                        <p>日常の喧騒を忘れさせる落ち着いた空間で、心ゆくまでリラックスできる時間をお過ごしください。厳選されたオーガニック製品と、最新の技術で、髪と頭皮に優しく、美しい仕上がりをお約束します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container text-center">
+                <h2 class="section-title">メニュー</h2>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <i class="fas fa-cut"></i>
+                        <h4>カット</h4>
+                        <p>お客様の骨格や髪質に合わせた、再現性の高いデザインカット。丁寧なカウンセリングで理想のスタイルを実現します。</p>
+                        <span class="price">¥5,500 〜</span>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-palette"></i>
+                        <h4>カラー</h4>
+                        <p>ダメージを最小限に抑え、艶と透明感のある発色を。トレンドカラーからグレイカラーまで幅広く対応いたします。</p>
+                        <span class="price">¥7,000 〜</span>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-wave-square"></i>
+                        <h4>パーマ</h4>
+                        <p>ふんわりとした自然なカールから、しっかりとしたウェーブまで。髪への負担を考慮した薬剤を使用しています。</p>
+                        <span class="price">¥8,000 〜</span>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-spa"></i>
+                        <h4>ヘッドスパ</h4>
+                        <p>日頃の疲れを癒す、リラックス効果の高いヘッドスパ。頭皮の健康を促進し、髪本来の美しさを引き出します。</p>
+                        <span class="price">¥4,000 〜</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="cta">
+            <div class="cta-content">
+                <h2>ご予約・お問い合わせ</h2>
+                <p>HAIR SALON LUNEで、新しい自分に出会いませんか？お客様のご来店を心よりお待ちしております。ご不明な点がございましたら、お気軽にお問い合わせください。</p>
+                <a href="tel:03-1234-5678" class="btn"><i class="fas fa-phone-alt"></i> 電話で予約</a>
+                <a href="#" class="btn" style="margin-left: 20px;">オンライン予約</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <a href="#" class="footer-logo">HAIR SALON <span>LUNE</span></a>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="#hero">トップ</a></li>
+                    <li><a href="#about">LUNEのこだわり</a></li>
+                    <li><a href="#services">メニュー</a></li>
+                    <li><a href="#contact">ご予約</a></li>
+                </ul>
+            </nav>
+            <div class="contact-info">
+                <p>〒123-4567 東京都中央区美容町1-2-3 ルナビル1F</p>
+                <p>営業時間: 平日 10:00 - 20:00 / 土日祝 09:00 - 19:00</p>
+                <p>定休日: 火曜日</p>
+                <p>電話番号: <a href="tel:03-1234-5678">03-1234-5678</a></p>
+            </div>
+            <div class="social-links">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+            <p>&copy; 2023 HAIR SALON LUNE. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('.nav');
+            const navLinks = document.querySelectorAll('.nav ul li a');
+
+            // Toggle mobile menu
+            menuToggle.addEventListener('click', function() {
+                nav.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
+
+            // Close mobile menu when a link is clicked
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (nav.classList.contains('active')) {
+                        nav.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                    }
+                });
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Adjust scroll position considering fixed header height
+                        const headerOffset = document.querySelector('.header').offsetHeight;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
