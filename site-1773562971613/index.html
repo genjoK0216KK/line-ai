@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bellezza Hair Salon | あなたの美しさを引き出す、至福のひとときを</title>
+    <meta name="description" content="Bellezza Hair Salonは、お客様一人ひとりの個性を尊重し、最高の技術と心温まるサービスで、あなたの「なりたい」を叶えます。">
+    <!-- Google Fonts: Noto Sans JP for Japanese, Playfair Display for headings (English part) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0Xp5NAbdz9lce0HnBGY5/WOe0qfFM3Qe/g1tfa/3mJ/B/pQ2m1Wv+d4GzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: #333;
+            margin-bottom: 1em;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: #D7A6B1;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #B0987A;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #D7A6B1;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #B0987A;
+            transform: translateY(-2px);
+            color: #fff; /* Hover時のテキスト色も白を維持 */
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.8em;
+            color: #333;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #D7A6B1;
+            border-radius: 2px;
+        }
+
+        /* Header */
+        .header {
+            background-color: #fff;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .logo a {
+            color: #333;
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .main-nav ul li {
+            margin-left: 30px;
+        }
+
+        .main-nav ul li a {
+            color: #666;
+            font-weight: 400;
+            font-size: 1.05em;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        .main-nav ul li a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: #D7A6B1;
+            transition: width 0.3s ease;
+        }
+
+        .main-nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu (Mobile) */
+        .hamburger {
+            display: none;
+            font-size: 1.8em;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            background: url('https://source.unsplash.com/1600x900/?hair-salon-interior,hair-style') no-repeat center center/cover;
+            /* Placeholder image. Recommend replacing with a professional salon photo. */
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: slideInUp 1s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+
+        .hero-content p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            color: #eee;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            animation: slideInUp 1s ease-out 0.8s forwards;
+            opacity: 0;
+        }
+
+        .hero-content .btn {
+            padding: 15px 35px;
+            font-size: 1.1em;
+            animation: slideInUp 1s ease-out 1.1s forwards;
+            opacity: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background-color: #f8f4f1;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-item {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-item i {
+            font-size: 3em;
+            color: #D7A6B1;
+            margin-bottom: 20px;
+        }
+
+        .service-item h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .service-item p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .service-item .price {
+            font-weight: 700;
+            color: #D7A6B1;
+            font-size: 1.2em;
+        }
+
+        /* About/Features Section */
+        .about {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text h2 {
+            text-align: left;
+            margin-bottom: 25px;
+            font-size: 2.5em;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5em;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .about-image img {
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Call To Action */
+        .cta {
+            background-color: #D7A6B1;
+            color: #fff;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .cta p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .cta .btn {
+            background-color: #fff;
+            color: #D7A6B1;
+            padding: 15px 40px;
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        .cta .btn:hover {
+            background-color: #f0f0f0;
+            color: #B0987A;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: #eee;
+            padding: 50px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer .logo {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .footer-info {
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .footer-info p {
+            margin: 5px 0;
+        }
+
+        .social-links {
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            color: #eee;
+            font-size: 1.5em;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #D7A6B1;
+        }
+
+        .footer-nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-nav ul li {
+            margin: 0 15px 10px;
+        }
+
+        .footer-nav ul li a {
+            color: #eee;
+            font-weight: 300;
+        }
+
+        .footer-nav ul li a:hover {
+            color: #D7A6B1;
+        }
+
+        /* Mobile Specific Styles */
+        @media (max-width: 768px) {
+            .hero {
+                height: 70vh;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8em;
+            }
+
+            .hero-content p {
+                font-size: 1.1em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .header .main-nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px; /* Adjust based on header height */
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 20px 0;
+                border-top: 1px solid #eee;
+            }
+
+            .header .main-nav.active {
+                display: flex;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .main-nav ul li {
+                margin: 15px 0;
+            }
+
+            .main-nav ul li a {
+                font-size: 1.2em;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-text, .about-image {
+                min-width: unset;
+                width: 100%;
+            }
+            
+            .about-text h2 {
+                text-align: center;
+            }
+
+            .service-item {
+                padding: 25px;
+            }
+            
+            .cta h2 {
+                font-size: 2.2em;
+            }
+
+            .cta p {
+                font-size: 1em;
+                margin-bottom: 30px;
+            }
+
+            .footer-nav ul {
+                flex-direction: column;
+            }
+            .footer-nav ul li {
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2.2em;
+            }
+            .hero-content p {
+                font-size: 0.9em;
+            }
+            .hero-content .btn {
+                padding: 10px 25px;
+                font-size: 1em;
+            }
+            .section-title {
+                font-size: 1.8em;
+                margin-bottom: 40px;
+            }
+            .services, .about, .cta, .footer {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo"><a href="#">Bellezza</a></h1>
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="#home">ホーム</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#about">サロンについて</a></li>
+                    <li><a href="#contact">ご予約・お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Bellezza Hair Salon</h1>
+                <p>あなたの美しさを引き出す、至福のひとときを。</p>
+                <a href="#contact" class="btn">今すぐ予約する</a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <h2 class="section-title">私たちのサービス</h2>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <i class="fas fa-cut"></i>
+                        <h3>カット</h3>
+                        <p>経験豊富なスタイリストが、お客様の骨格や髪質に合わせた最適なスタイルをご提案します。再現性の高いカットで、ご自宅でのスタイリングも簡単に。</p>
+                        <p class="price">¥6,000〜</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-tint"></i>
+                        <h3>カラー</h3>
+                        <p>トレンドを取り入れつつ、お客様の肌色やライフスタイルに合わせたカラーリング。ダメージを最小限に抑え、美しい発色とツヤを長持ちさせます。</p>
+                        <p class="price">¥8,000〜</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-wave-square"></i>
+                        <h3>パーマ</h3>
+                        <p>ふんわりとした柔らかいパーマから、しっかりとしたカールまで。髪への負担を考慮した薬剤選びで、ダメージレスな美しいウェーブを実現します。</p>
+                        <p class="price">¥9,000〜</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-hand-sparkles"></i>
+                        <h3>トリートメント</h3>
+                        <p>髪の深部まで浸透する高品質なトリートメントで、ダメージヘアを集中補修。潤いに満ちた、なめらかな手触りの髪へと導きます。</p>
+                        <p class="price">¥4,000〜</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About/Features Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">Bellezza Hair Salonについて</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>お客様一人ひとりの「美」を追求</h2>
+                        <p>Bellezza Hair Salonは、お客様の個性を尊重し、内面から輝く美しさを引き出すことを目指しています。最新のトレンドと確かな技術を融合させ、お客様のライフスタイルに溶け込むヘアデザインをご提案いたします。</p>
+                        <p>使用する薬剤は厳選されたオーガニック製品を中心とし、髪と頭皮への優しさを最優先。お客様が安心して施術を受けられるよう、細やかなカウンセリングと丁寧なサービスを心掛けております。</p>
+                        <p>日々の喧騒を忘れ、ゆったりと流れる時間の中で、心ゆくまでリラックスできる空間をご提供いたします。私たちと一緒に、新しい「自分らしさ」を見つけませんか？</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://source.unsplash.com/600x400/?hairdresser-working,salon-chair" alt="美容師がお客様の髪をスタイリングしている様子">
+                        <!-- Placeholder image. Recommend replacing with a professional salon photo. -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call To Action -->
+        <section id="contact" class="cta">
+            <div class="container">
+                <h2>ご予約・お問い合わせ</h2>
+                <p>美しい髪で、新しい自分に出会いましょう。オンライン予約またはお電話にて、お気軽にご連絡ください。</p>
+                <a href="tel:0312345678" class="btn"><i class="fas fa-phone-alt"></i> 03-1234-5678</a>
+                <p style="margin-top: 20px; font-size: 1em;">営業時間: 10:00 - 20:00 (火曜定休)</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="logo"><a href="#">Bellezza</a></div>
+            <div class="footer-info">
+                <p>〒100-0001 東京都千代田区千代田1-1-1 ビルディング1F</p>
+                <p>電話: 03-1234-5678 | メール: info@bellezza.com</p>
+                <p>営業時間: 10:00 - 20:00 (火曜定休)</p>
+            </div>
+            <div class="social-links">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="#home">ホーム</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#about">サロンについて</a></li>
+                    <li><a href="#">プライバシーポリシー</a></li>
+                    <li><a href="#">サイトマップ</a></li>
+                </ul>
+            </nav>
+            <p>&copy; 2023 Bellezza Hair Salon All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile nav if open
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                }
+            });
+        });
+
+        // Hamburger menu functionality
+        const hamburger = document.getElementById('hamburger');
+        const mainNav = document.getElementById('main-nav');
+
+        hamburger.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
