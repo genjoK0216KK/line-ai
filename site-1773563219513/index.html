@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SALON DE GRACE - あなたの美しさを最大限に引き出すヘアサロン</title>
+    <meta name="description" content="SALON DE GRACEは、丁寧なカウンセリングと上質な技術で、お客様一人ひとりの魅力を引き出す美容院です。ご予約はこちらから。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha5hatageneratedbytool" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* 基本設定 */
+        :root {
+            --primary-color: #D4AF37; /* ゴールド */
+            --secondary-color: #F0EAD6; /* 淡いベージュ */
+            --accent-color: #8B4513; /* セピアブラウン */
+            --dark-text-color: #333333;
+            --light-text-color: #666666;
+            --bg-light: #FFFFFF;
+            --bg-dark: #FDF9F3; /* わずかにオフホワイト */
+            --font-main: 'Noto Serif JP', serif;
+            --font-heading: 'Montserrat', sans-serif;
+            --spacing-unit: 1rem;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--dark-text-color);
+            line-height: 1.6;
+            background-color: var(--bg-light);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 共通スタイル */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit) * 2;
+        }
+
+        section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            margin-bottom: var(--spacing-unit);
+            color: var(--accent-color);
+            letter-spacing: 0.05em;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        p {
+            margin-bottom: var(--spacing-unit);
+            color: var(--light-text-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--primary-color);
+            color: var(--bg-light);
+            border-radius: 5px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+            color: var(--bg-light);
+        }
+
+        /* ヘッダー */
+        .header {
+            background-color: var(--bg-light);
+            padding: var(--spacing-unit) * 1.5 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            letter-spacing: 0.1em;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: var(--spacing-unit) * 2;
+        }
+
+        .nav-menu a {
+            color: var(--dark-text-color);
+            font-weight: 400;
+            font-size: 1.1rem;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* ハンバーガーメニュー */
+        .hamburger-menu {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            z-index: 1001;
+        }
+
+        .hamburger-menu span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--dark-text-color);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-menu.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-menu.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* ヒーローセクション */
+        .hero {
+            background: url('https://source.unsplash.com/random/1920x1080/?hair-salon-interior,beauty') no-repeat center center/cover;
+            color: var(--bg-light);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* オーバーレイ */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: var(--spacing-unit) * 2;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            margin-bottom: var(--spacing-unit);
+            color: var(--bg-light);
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-unit) * 2;
+            color: var(--secondary-color);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        /* サービス紹介 */
+        .services {
+            background-color: var(--bg-dark);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-unit) * 3;
+            margin-top: 60px;
+        }
+
+        .service-item {
+            background-color: var(--bg-light);
+            padding: var(--spacing-unit) * 2;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-item i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .service-item h3 {
+            font-size: 1.6rem;
+            margin-bottom: var(--spacing-unit);
+            color: var(--accent-color);
+        }
+
+        .service-item p {
+            font-size: 1rem;
+            color: var(--light-text-color);
+        }
+
+        /* 特徴 */
+        .features {
+            background-color: var(--bg-light);
+        }
+
+        .features .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-unit) * 4;
+            margin-top: 60px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            text-align: left;
+            gap: var(--spacing-unit) * 2;
+        }
+
+        .feature-item:nth-child(even) {
+            flex-direction: row-reverse; /* 交互に画像を左右反転 */
+        }
+
+        .feature-item img {
+            width: 45%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-item-content {
+            width: 55%;
+            padding: var(--spacing-unit);
+        }
+
+        .feature-item h3 {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-unit);
+            color: var(--accent-color);
+        }
+
+        .feature-item p {
+            font-size: 1.1rem;
+            color: var(--light-text-color);
+        }
+
+        /* お問い合わせCTA */
+        .cta {
+            background-color: var(--secondary-color);
+            padding: 80px 0;
+        }
+
+        .cta h2 {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            color: var(--dark-text-color);
+        }
+
+        /* フッター */
+        .footer {
+            background-color: var(--dark-text-color);
+            color: var(--bg-light);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .footer .logo {
+            color: var(--bg-light);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .footer-info p {
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            margin-top: var(--spacing-unit) * 2;
+            margin-bottom: var(--spacing-unit) * 2;
+        }
+
+        .social-links a {
+            color: var(--bg-light);
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            margin-top: var(--spacing-unit);
+            font-size: 0.85rem;
+            color: var(--secondary-color);
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px; /* ヘッダーの高さに合わせて調整 */
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-light);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: var(--spacing-unit) * 2 0;
+                align-items: center;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                margin: var(--spacing-unit) 0;
+            }
+
+            .hamburger-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .feature-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            .feature-item:nth-child(even) {
+                flex-direction: column; /* 偶数番目も同じ */
+            }
+
+            .feature-item img {
+                width: 80%;
+                margin-bottom: var(--spacing-unit) * 2;
+            }
+
+            .feature-item-content {
+                width: 100%;
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+
+            h2 {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+
+            .hero {
+                height: 80vh;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-item img {
+                width: 90%;
+            }
+
+            .cta h2 {
+                font-size: 2.2rem;
+            }
+
+            .cta p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: var(--spacing-unit) 0;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="#" class="logo">SALON DE <span>GRACE</span></a>
+            <nav class="nav">
+                <div class="hamburger-menu" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#hero">トップ</a></li>
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#features">サロンの特徴</a></li>
+                    <li><a href="#contact">ご予約</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>あなたの美しさを最大限に引き出す、至福のヘアサロン</h1>
+                <p>経験豊富なスタイリストが、お客様一人ひとりの魅力を引き出し、最高のスタイルをご提案します。</p>
+                <a href="#contact" class="btn">ご予約はこちら</a>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="container">
+                <h2>SERVICES</h2>
+                <p>SALON DE GRACEが提供する、お客様の美しさを追求する様々なサービス。</p>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <i class="fas fa-cut"></i>
+                        <h3>カット</h3>
+                        <p>骨格や髪質に合わせた、お客様の魅力を引き出すオーダーメイドカット。トレンドを取り入れつつ、再現性の高いスタイルをご提案します。</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-palette"></i>
+                        <h3>カラー</h3>
+                        <p>髪へのダメージを最小限に抑えながら、透明感のある艶やかなカラーを実現。オーガニックカラーやハイライトなど、豊富なメニューをご用意。</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-ruler-horizontal"></i>
+                        <h3>パーマ</h3>
+                        <p>髪質や希望のスタイルに合わせて、デジタルパーマからエアウェーブまで最適な施術をご提供。柔らかな質感と持ちの良いカールを。</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-spa"></i>
+                        <h3>トリートメント・スパ</h3>
+                        <p>髪の深部から補修する集中トリートメントや、頭皮の血行促進・リラックス効果のあるヘッドスパで、髪も心も癒やされるひとときを。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>WHY CHOOSE US?</h2>
+                <p>SALON DE GRACEがお客様に選ばれる4つの理由。</p>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <img src="https://source.unsplash.com/random/800x600/?hairdresser-working" alt="経験豊富なスタイリスト">
+                        <div class="feature-item-content">
+                            <h3>経験豊富なスタイリスト</h3>
+                            <p>長年の経験と確かな技術を持つスタイリストが、お客様一人ひとりの髪質やライフスタイルを丁寧にヒアリングし、最適なスタイルをご提案します。常に最新のトレンドを学び、最高のパフォーマンスでお迎えします。</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <img src="https://source.unsplash.com/random/800x600/?organic-shampoo,hair-products" alt="厳選されたオーガニック製品">
+                        <div class="feature-item-content">
+                            <h3>厳選されたオーガニック製品</h3>
+                            <p>お客様の髪と頭皮の健康を第一に考え、厳選されたオーガニック製品や高品質なケア用品のみを使用しています。優しい成分で、髪本来の美しさを引き出し、ダメージケアにも力を入れています。</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <img src="https://source.unsplash.com/random/800x600/?luxurious-salon-interior" alt="心安らぐ上質な空間">
+                        <div class="feature-item-content">
+                            <h3>心安らぐ上質な空間</h3>
+                            <p>白と木目を基調とした落ち着いた内装、心地よいアロマの香りが漂う空間で、リラックスした時間をお過ごしいただけます。日常の喧騒を忘れ、ゆったりと自分だけの美を追求する贅沢なひとときを。</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <img src="https://source.unsplash.com/random/800x600/?hair-consultation,client-discussion" alt="丁寧なカウンセリング">
+                        <div class="feature-item-content">
+                            <h3>丁寧なカウンセリング</h3>
+                            <p>初めてご来店の方も安心できるよう、施術前にはお客様の悩みや希望をじっくりお伺いする丁寧なカウンセリングを行います。髪のプロとして、最適なアドバイスと提案で理想のスタイルを共に創り上げます。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="cta">
+            <div class="container">
+                <h2>ご予約・お問い合わせ</h2>
+                <p>SALON DE GRACEでは、お客様のご予約を心よりお待ちしております。
+                   ご質問やご相談も、お気軽にお問い合わせください。</p>
+                <a href="tel:0312345678" class="btn"><i class="fas fa-phone-alt"></i> 03-1234-5678</a>
+                <p style="margin-top: 20px; font-weight: bold; color: var(--accent-color);">営業時間: 10:00 - 19:00 (火曜定休)</p>
+                <a href="https://example.com/reservation" target="_blank" class="btn" style="margin-top: 20px;"><i class="fas fa-calendar-alt"></i> オンライン予約</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <a href="#" class="logo">SALON DE <span>GRACE</span></a>
+            <div class="footer-info">
+                <p>〒150-00XX 東京都渋谷区XX-X-X GRACEビル1F</p>
+                <p>TEL: 03-1234-5678</p>
+                <p>営業時間: 10:00 - 19:00 (火曜定休)</p>
+            </div>
+            <div class="social-links">
+                <a href="https://instagram.com/salondegrace_official" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/salondegrace" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/salondegrace" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <p class="copyright">&copy; 2023 SALON DE GRACE. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const navMenu = document.getElementById('nav-menu');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+
+            hamburgerMenu.addEventListener('click', function() {
+                hamburgerMenu.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+
+            // ナビリンククリックでメニューを閉じる (モバイル時)
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (navMenu.classList.contains('active')) {
+                        hamburgerMenu.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                });
+            });
+
+            // スムーススクロール
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
